@@ -244,11 +244,22 @@ sup { font-size: .58em; vertical-align: super; }
 .dd {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  overflow: hidden;
   pointer-events: none;
 }
 
+/* Every piece is placed from its own centre, so a percentage is
+   where the drawing actually sits rather than where its box starts. */
+.dd-i {
+  position: absolute;
+  translate: -50% -50%;
+  height: auto;
+  display: block;
+}
+
+/* Bright white, not a tint: the drawings are meant to be seen. The
+   wordmark still wins because it is a solid mass, not because the
+   field behind it is faded out. */
 .dd-line {
   fill: none;
   stroke: var(--white);
@@ -256,6 +267,7 @@ sup { font-size: .58em; vertical-align: super; }
   stroke-linecap: round;
   stroke-linejoin: round;
   opacity: .88;
+  overflow: visible;
 }
 
 .hero-stage { grid-row: 2; position: relative; width: 100%; display: grid; justify-items: center; }
@@ -672,6 +684,7 @@ sup { font-size: .58em; vertical-align: super; }
   .hd-burger { display: flex; }
   .hd-mark { width: 66px; }
 
+  .dd-i:not(.dd-sm) { display: none; }
   .hero-clip { width: 80vw; }
   .hero-tag { letter-spacing: .3em; padding-left: .3em; }
   .hero-foot {
