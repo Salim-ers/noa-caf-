@@ -28,7 +28,7 @@ export default function Histoire() {
           </p>
         </div>
         <Reveal kind="clip">
-          <Photo photo={P.team} ratio="4 / 5" sizes="(max-width: 1000px) 100vw, 42vw" />
+          <Photo photo={P.case} ratio="4 / 5" sizes="(max-width: 1000px) 100vw, 42vw" />
         </Reveal>
       </section>
     </div>

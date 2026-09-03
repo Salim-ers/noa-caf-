@@ -1,14 +1,14 @@
 # Déposez les photos ici
 
 C'est le dossier que le site lit. Glissez vos fichiers dans **ce
-dossier-ci**, en gardant **exactement le même nom** que celui de la
-liste, et la photo apparaît toute seule au bon endroit.
+dossier-ci**, en gardant **exactement le même nom** que dans la liste,
+et la photo apparaît toute seule au bon endroit.
 
 Chemin complet : `public/photos/noa/`
 
 ## Une seule règle
 
-Le nom du fichier doit être identique, extension `.jpg` comprise.
+Le nom doit être identique, extension `.jpg` comprise.
 `hero.jpg` marche. `Hero.JPG`, `hero (1).jpg` ou `hero.png` non.
 
 Écrasez simplement le fichier existant.
@@ -16,46 +16,53 @@ Le nom du fichier doit être identique, extension `.jpg` comprise.
 ## Format
 
 - **JPEG**, 2400 px sur le grand côté
-- Le site fabrique tout seul les versions WebP et AVIF, et les tailles
-  pour mobile. Vous n'avez rien à redimensionner.
+- Le site fabrique seul les versions WebP et AVIF et les tailles pour
+  mobile. Rien à redimensionner de votre côté.
+- Plus grand n'apporte rien à l'écran et alourdit le dépôt : les
+  fichiers 4K reçus ont été ramenés à 2400 px, ce qui a fait passer le
+  lot de 33 Mo à 9 Mo sans perte visible.
 
 ## La liste
 
 | Fichier | Ce qu'il montre | Où il sort |
 |---|---|---|
-| `hero.jpg` | La devanture, le store vert | réserve — le premier écran est vert |
-| `terrace.jpg` | La terrasse, la rue | Le lieu, Venir |
-| `counter.jpg` | Le comptoir, la vitrine à gâteaux | Le lieu |
-| `team.jpg` | Derrière le comptoir | Notre histoire |
-| `window.jpg` | La vitrine et le logo deux tasses | Le lieu |
-| `interior.jpg` | La salle | réserve |
-| `dog.jpg` | Un chien dans la salle | Le lieu, Instagram |
-| `spread.jpg` | La table garnie, vue large | Accueil, pleine largeur |
-| `breakfast.jpg` | Le petit-déjeuner scandinave | Les favoris |
-| `toast.jpg` | Avocado toast / croque | Le lieu, Instagram |
+| `hero.jpg` | La devanture le soir, salle éclairée | réserve — le premier écran est vert |
+| `facade.jpg` | La façade de jour, portes ouvertes | Le lieu |
+| `terrace.jpg` | La terrasse et ses bancs | Le lieu, Venir |
+| `interior.jpg` | La salle, tables et tabourets | Le lieu |
+| `window.jpg` | Une table près de la vitrine | réserve |
+| `counter.jpg` | Le comptoir, les lanternes | Le lieu |
+| `case.jpg` | La vitrine à pâtisseries | Le lieu, Notre histoire |
+| `spread.jpg` | La table vue de dessus | Accueil, pleine largeur |
+| `brunch.jpg` | À table | réserve |
+| `breakfast.jpg` | Matcha, avocado toast, jus | Les favoris |
+| `toast.jpg` | L'avocado toast | Le lieu, Instagram |
 | `matcha.jpg` | Le matcha latte | La carte, Le lieu |
-| `latte.jpg` | Un latte | Instagram |
-| `coffee.jpg` | Un espresso | La carte, Le lieu |
-| `cookie.jpg` | Le cookie | Les favoris |
-| `matcha-brownie.jpg` | Le brownie matcha | Les favoris |
+| `card.jpg` | Matcha et carte au logo | réserve |
+| `latte.jpg` | Un latte, gros plan | Instagram |
+| `coffee.jpg` | Café et matcha sur une table | La carte, Le lieu |
+| `cake-latte.jpg` | Latte et part de carrot cake | réserve |
+| `carrot-cake.jpg` | Le carrot cake | Les favoris, Instagram |
+| `matcha-brownie.jpg` | Le brownie matcha | Les favoris, Instagram |
+| `cookie.jpg` | Le cookie | Les favoris, Instagram |
 
-### Manquant
-
-`carrot-cake.jpg` — aucune photo pour l'instant. Le carrot cake est
-porté par le texte seul sur l'accueil. Déposez le fichier sous ce nom
-et dites-le-moi : je le branche à la section.
+« réserve » = la photo est prête et déclarée, elle n'est simplement
+pas placée dans une page pour l'instant. Dites-moi où vous la voulez.
 
 ## Après avoir déposé
 
 Deux valeurs à corriger dans `lib/data.js` → `P` : `w` et `h`, les
-dimensions réelles en pixels du nouveau fichier. Sans ça la place
-réservée à l'image sera fausse et la page sautera au chargement.
+dimensions réelles du nouveau fichier. Sans ça la place réservée à
+l'image est fausse et la page saute au chargement.
 
-Envoyez-moi les fichiers et je m'occupe de cette partie.
+Envoyez-moi les fichiers, je m'occupe de cette partie.
 
-## Important
+## Si une photo ne change pas à l'écran
 
-Les photos actuellement dans ce dossier sont des **références de
-travail**, pas des fichiers acquis — voir `PHOTO-SOURCES.md` à la
-racine du projet. Elles doivent être remplacées avant la mise en
-ligne.
+Next garde un cache d'images optimisées. Après un remplacement :
+
+```bash
+rm -rf .next/cache/images
+```
+
+puis relancez. C'est déjà fait pour le lot en place.

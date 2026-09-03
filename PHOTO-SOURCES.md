@@ -1,116 +1,73 @@
-# Photographies — provenance et statut de licence
+# Photographies — provenance
 
 **Ce fichier n'est pas publié.** Il vit à la racine du dépôt, pas dans
 `public/`, et n'apparaît nulle part sur le site.
 
-## Statut
+## Statut : fournies par NOA
 
-Toutes les photographies de `public/photos/noa/` sont **des références de
-travail**, pas des fichiers de production. Elles proviennent de pages
-publiques consacrées à ce NOA précis — 6 rue Mélingue, 75019 — et servent
-à caler la direction artistique sur le vrai lieu.
+Les 19 fichiers de `public/photos/noa/` viennent de **NOA**, remis
+directement pour ce site. Le blocage de licence qui pesait sur la
+version précédente est levé : plus aucune image tierce n'est utilisée.
 
-**Aucune n'est acquise pour un usage commercial.** Une au moins porte un
-crédit photographe explicite (voir ci-dessous). Avant la mise en ligne,
-NOA doit fournir ses propres fichiers, ou obtenir l'accord écrit des
-auteurs.
+Les fichiers d'origine étaient en 3840 px. Ils ont été ramenés à
+2400 px sur le grand côté, en JPEG qualité 88 progressif — la limite
+utile pour un écran. Le lot passe de 33 Mo à 9 Mo, sans perte visible.
+Les originaux 4K sont à conserver de votre côté, hors dépôt.
 
-## Remplacer un fichier
+## Ce qui a été fait à chaque fichier
 
-Le système est fait pour ça. Déposez le nouveau JPEG **sous le même nom**
-dans `public/photos/noa/`, puis corrigez `w` et `h` dans `lib/data.js` →
-`P`. Rien d'autre à toucher : chaque photo n'est référencée qu'une fois.
+Rien, sauf pour deux d'entre eux : la photo qui montrait le brownie
+matcha et le cookie côte à côte a été recadrée en deux carrés, un par
+produit, pour la section « Les favoris ».
 
-Fournissez si possible 2400 px sur le grand côté. AVIF et WebP sont
-générés automatiquement par `next/image`.
+| Fichier livré | Devenu | Traitement |
+|---|---|---|
+| `CCC_4K` | `hero.jpg` | redimensionné |
+| `ddd_4K` | `facade.jpg` | redimensionné |
+| `DEV_4K` | `terrace.jpg` | redimensionné |
+| `XXX_4K` | `interior.jpg` | redimensionné |
+| `az_4K` | `window.jpg` | redimensionné |
+| `zzzzz_4K` | `counter.jpg` | redimensionné |
+| `zae_4K` | `case.jpg` | redimensionné |
+| `azdazdazdaz_4K` | `spread.jpg` | redimensionné |
+| `qsd_4K` | `brunch.jpg` | redimensionné |
+| `photo_4K` | `breakfast.jpg` | redimensionné |
+| `azdazdaz_4K` | `toast.jpg` | redimensionné |
+| `a_4K` | `matcha.jpg` | redimensionné |
+| `azdqsxcQS_4K` | `card.jpg` | redimensionné |
+| `unnamed_4K` | `latte.jpg` | redimensionné |
+| `unnamed(1)_4K` | `cake-latte.jpg` | redimensionné |
+| `azedaéed_4K` | `coffee.jpg` | redimensionné |
+| `AQQQ_4K` | `carrot-cake.jpg` | redimensionné |
+| `fff_4K` | `matcha-brownie.jpg` | recadré à gauche, carré |
+| `fff_4K` | `cookie.jpg` | recadré à droite, carré |
 
-## Sources
+## Ce que les photos ont appris sur la carte
 
-### Série éditoriale — © SABRINA SAKO
+`case.jpg` montre la vitrine à pâtisseries, les produits et leurs prix
+écrits au feutre sur le verre. Deux produits n'étaient pas encore sur
+le site et y ont été ajoutés, **sans prix** :
 
-Crédit lisible en bas à droite du montage d'origine. **C'est le crédit le
-plus contraignant du lot : il faut l'accord de la photographe.**
+- **Chocolate cake**, noté « V/GF » sur la vitrine
+- **Banana bread**
 
-Page : `https://www.lumpmedia.fr/lieux/noa-cafe-paris-coffeeshop-dog-friendly-paris19`
-Fichiers d'origine : `68ef8e67…_Noa Café.png`, `68ef8e71…_Noa Café-1.png`
-(deux montages de trois photos, détourés et redressés par recadrage)
-
-| Fichier | Sujet |
-|---|---|
-| `counter.jpg` | Le comptoir, la vitrine à pâtisseries, le tableau noir |
-| `team.jpg` | Détail du comptoir (recadrage de `counter.jpg`) |
-| `interior.jpg` | La salle à travers la vitrine |
-| `dog.jpg` | Un chien dans la salle |
-| `terrace.jpg` | La terrasse et le store vert, un jour d'été |
-| `breakfast.jpg` | Petit-déjeuner scandinave et matcha latte |
-| `matcha.jpg` | Le matcha latte (recadrage de `breakfast.jpg`) |
-| `toast.jpg` | Avocado toast et croque |
-
-### Devanture
-
-Page : même article. Fichier d'origine `68ef8f6b…_unnamed.webp`, 816 × 1020.
-
-| Fichier | Sujet |
-|---|---|
-| `hero.jpg` | La devanture entière, store vert, fin de journée |
-
-### Vitrine et logo
-
-Source : `https://images.mapstr.com/491d51b7d93ae762921aab5895a24620_image_8e2e3859-4b80-4a89-aaa5-b7aa84a8ac78.jpeg`
-(fiche Mapstr du lieu), 819 × 1024. Auteur non crédité sur la page.
-
-| Fichier | Sujet |
-|---|---|
-| `window.jpg` | La vitrine, logo deux tasses + CAFÉ & FRIENDS |
-
-C'est aussi le fichier dont sont tirés `public/brand/noa-mark.png` et
-`public/brand/noa-lockup.png` — voir plus bas.
-
-### Table
-
-Source : `https://yfzbjgdrggzcwpbroops.supabase.co/storage/v1/object/public/cafe-covers/de65d6d9-765e-4d09-9105-e964b7dd336f/1778799236194-1778799235983-0.jpg`
-(photo de couverture de la fiche Sip Club), 879 × 1080. Auteur non crédité.
-
-| Fichier | Sujet |
-|---|---|
-| `spread.jpg` | La table entière |
-| `matcha-brownie.jpg` | Le brownie matcha (recadrage) |
-| `cookie.jpg` | Le cookie (recadrage) |
-| `coffee.jpg` | L'espresso (recadrage) |
-| `latte.jpg` | Le latte (recadrage) |
-
-## Vérification d'identité
-
-Chaque image a été rapprochée du lieu avant d'être retenue. Il existe
-d'autres établissements nommés NOA — dont un compte Instagram
-`@noacoffee_cafe` sans rapport — et aucune de leurs images n'est ici.
-
-Points de recoupement retenus : le store vert et son lettrage `NOA` ;
-le logo deux tasses et `CAFÉ & FRIENDS` sur la vitrine ; les tables
-rondes en noyer ; les assiettes en grès sable ; le monstera près de la
-fenêtre ; l'enseigne voisine `JÉRÔME GAUTHIER STUDIO`, qui situe la rue.
-
-## Résolution
-
-Les originaux disponibles publiquement plafonnent entre 300 et 1080 px.
-Les variantes plus grandes du CDN répondent `403`. C'est suffisant pour
-juger la mise en page, **pas** pour un plein écran en production : d'où
-le point précédent, les fichiers doivent venir de NOA.
+Les prix lisibles sur cette photo sont notés dans `lib/data.js`, en
+commentaire, **non publiés**. Ils attendent une confirmation : la photo
+n'est pas datée et un prix faux sur un site est un vrai problème.
 
 ## Marque
 
 La marque principale est le **logotype `NOA` de l'auvent**, vectorisé
 dans `lib/logo.js`. Comparé au lettrage de la devanture, il concorde :
 mêmes fûts arrondis, même contrepoinçon oblique dans le O, même A à
-sommet plat. Ce n'est pas un dessin inventé.
+sommet plat.
 
-`public/brand/noa-mark.png` et `noa-lockup.png` sont **l'autre marque NOA**,
-le dessin des deux tasses de la vitrine,
-isolé depuis `window.jpg` : seuil sur la luminance, alpha adouci sur les
-bords, fond détouré. Le tracé n'a pas été redessiné — c'est le dessin de
-NOA, pas une reconstitution.
+`public/brand/noa-mark.png` et `noa-lockup.png` sont **l'autre marque
+NOA**, le dessin des deux tasses de la vitrine, isolé par seuillage sur
+la luminance depuis une photographie de la vitrine. Le tracé n'a pas
+été redessiné.
 
-Ils sont posés en `mask-image`, donc ils prennent `currentColor` : un seul
-fichier sert le blanc sur la photo, le vert sur le crème et l'encre sur le
-blanc. Si NOA fournit un SVG, remplacez les deux fichiers et
+Les deux sont posés en `mask-image` ou en SVG, donc ils prennent
+`currentColor` : un seul fichier sert le blanc sur vert comme le vert
+sur crème. Si NOA fournit un SVG officiel, remplacez les fichiers et
 `components/Logo.jsx` continue de fonctionner tel quel.

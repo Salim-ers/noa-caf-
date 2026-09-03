@@ -13,14 +13,14 @@ const ROWS = [
     k: 'pair',
     items: [
       { photo: P.counter, ratio: '4 / 5', sizes: '(max-width: 800px) 100vw, 50vw' },
-      { photo: P.window, ratio: '4 / 5', sizes: '(max-width: 800px) 100vw, 50vw' },
+      { photo: P.interior, ratio: '4 / 5', sizes: '(max-width: 800px) 100vw, 50vw' },
     ],
   },
   { k: 'wide', items: [{ photo: P.toast, ratio: '16 / 9', sizes: '100vw' }] },
   {
     k: 'trio',
     items: [
-      { photo: P.dog, ratio: '1 / 1', sizes: '(max-width: 800px) 100vw, 33vw' },
+      { photo: P.case, ratio: '1 / 1', sizes: '(max-width: 800px) 100vw, 33vw' },
       { photo: P.matcha, ratio: '1 / 1', sizes: '(max-width: 800px) 100vw, 33vw' },
       { photo: P.coffee, ratio: '1 / 1', sizes: '(max-width: 800px) 100vw, 33vw' },
     ],
