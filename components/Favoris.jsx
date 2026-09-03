@@ -11,7 +11,7 @@ import { FAVORIS } from '@/lib/data';
 
 export default function Favoris() {
   return (
-    <section className="favs" aria-labelledby="favs-t">
+    <section className="favs band-green" aria-labelledby="favs-t">
       <h2 className="lbl favs-lbl" id="favs-t">Les favoris</h2>
 
       {FAVORIS.map((f, i) => (

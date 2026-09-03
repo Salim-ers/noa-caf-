@@ -41,9 +41,12 @@ body {
    positioned parent, and the crop needs somewhere to be clipped. */
 .ph { position: relative; overflow: hidden; width: 100%; }
 
-/* The mark takes currentColor through a mask. Width is set here so a
-   caller's class can override it; an inline width could not be. */
-.logo { display: block; width: 100%; background-color: currentColor; }
+/* Width is set here so a caller's class can override it; an inline
+   width could not be. Only the masked marks take a background —
+   the wordmark is an SVG and paints its own path. */
+.logo { display: block; width: 100%; }
+.logo-mask { background-color: currentColor; }
+.logo-word { height: auto; }
 
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
@@ -147,7 +150,7 @@ sup { font-size: .58em; vertical-align: super; }
   color: var(--ink);
   border-bottom-color: rgba(21, 17, 14, .10);
 }
-.hd-mark { width: 42px; flex: none; }
+.hd-mark { width: 76px; flex: none; }
 .hd-nav {
   display: flex;
   gap: clamp(14px, 2.2vw, 32px);
@@ -201,56 +204,52 @@ sup { font-size: .58em; vertical-align: super; }
 .hero {
   position: relative;
   height: 100svh;
-  min-height: 580px;
+  min-height: 560px;
   overflow: hidden;
   background: var(--green);
   color: var(--white);
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  justify-items: center;
+  align-items: center;
+  padding: 0 var(--pad);
 }
-.hero-shot { position: absolute; inset: -6% 0; }
-/* The photograph is a portrait and the viewport is a landscape, so
-   only half of it can show. This is the half worth showing: the
-   awning at the top, the room through the glass, the people on the
-   terrace at the foot. */
-.hero-shot img { object-position: center 56%; }
 
-/* The one gradient on the site, and it is doing a job: a scrim in
-   the brand green, weighted to the foot, so the sign-off reads
-   without draining the light out of the photograph. */
-.hero-veil {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(2, 64, 56, .46) 0, rgba(2, 64, 56, .13) 74px, rgba(2, 64, 56, 0) 156px),
-    linear-gradient(0deg, rgba(2, 64, 56, .66) 0, rgba(2, 64, 56, .17) 17%, rgba(2, 64, 56, 0) 38%);
+.hero-stage { grid-row: 2; width: 100%; display: grid; justify-items: center; }
+.hero-h1 { width: 100%; display: grid; justify-items: center; }
+
+/* the mark rides up from behind its own edge */
+.hero-clip { display: block; overflow: hidden; width: min(78vw, 760px); }
+.hero-word { display: block; width: 100%; height: auto; }
+
+.hero-tag {
+  margin-top: clamp(18px, 3vh, 34px);
+  display: flex;
+  overflow: hidden;
+  font-size: clamp(11px, 1.5vw, 15px);
+  font-weight: 700;
+  letter-spacing: .42em;
+  text-transform: uppercase;
+  padding-left: .42em;
 }
+.hero-tag i { font-style: normal; display: inline-block; white-space: pre; }
 
 .hero-foot {
-  position: absolute;
-  inset: auto 0 0 0;
+  grid-row: 3;
+  align-self: end;
+  width: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 24px;
-  padding: 0 var(--pad) clamp(30px, 5vh, 56px);
-}
-.hero-mark { width: clamp(124px, 15vw, 208px); }
-.hero-where {
-  margin-top: clamp(14px, 2vh, 22px);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  line-height: 1.7;
-}
-.hero-go {
-  flex: none;
-  font-size: 12px;
+  padding-bottom: clamp(28px, 5vh, 52px);
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: .18em;
   text-transform: uppercase;
-  border-bottom: 1.5px solid currentColor;
-  padding-bottom: 4px;
+  line-height: 1.8;
 }
+.hero-foot a { border-bottom: 1.5px solid currentColor; padding-bottom: 4px; }
 
 /* ── the line ───────────────────────────────────────────────── */
 
@@ -262,10 +261,21 @@ sup { font-size: .58em; vertical-align: super; }
 .bleed { width: 100%; }
 .bleed-sm { display: none; }
 
+/* ── sliding wordmark ──────────────────────────────────────── */
+
+.mq {
+  overflow: hidden;
+  background: var(--green);
+  color: var(--white);
+  padding: clamp(26px, 4vw, 54px) 0;
+}
+.mq-row { display: flex; gap: clamp(30px, 5vw, 80px); width: max-content; }
+.mq-word { flex: none; height: clamp(46px, 8vw, 116px); width: auto; display: block; }
+
 /* ── les favoris ────────────────────────────────────────────── */
 
 .favs { padding: var(--band) var(--pad); }
-.favs-lbl { margin-bottom: clamp(30px, 5vw, 64px); opacity: .55; }
+.favs-lbl { margin-bottom: clamp(30px, 5vw, 64px); opacity: .74; }
 
 .fav {
   display: grid;
@@ -296,10 +306,10 @@ sup { font-size: .58em; vertical-align: super; }
 }
 .fav h3 span { display: block; }
 .fav-solo h3 { font-size: clamp(48px, 11.5vw, 186px); }
-.fav-name p { margin-top: 16px; font-size: 15px; opacity: .6; }
+.fav-name p { margin-top: 16px; font-size: 15px; opacity: .78; }
 
 .favs-more a {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: .17em;
   text-transform: uppercase;
@@ -516,7 +526,7 @@ sup { font-size: .58em; vertical-align: super; }
 }
 .ft-nav a { padding-bottom: 3px; border-bottom: 1.5px solid transparent; }
 .ft-nav a:hover { border-bottom-color: currentColor; }
-.ft-mark { width: min(34vw, 250px); margin-top: clamp(38px, 5vw, 64px); }
+.ft-mark { width: min(62vw, 520px); margin-top: clamp(38px, 5vw, 64px); }
 .ft-bot { padding: clamp(26px, 3vw, 38px) 0 clamp(30px, 4vw, 44px); opacity: .5; }
 
 /* ── mobile dock ────────────────────────────────────────────── */
@@ -549,13 +559,14 @@ sup { font-size: .58em; vertical-align: super; }
 
   .hd-nav { display: none; }
   .hd-burger { display: flex; }
-  .hd-mark { width: 38px; }
+  .hd-mark { width: 66px; }
 
-  .hero-shot img { object-position: center 52%; }
-  .hero-mark { width: clamp(96px, 26vw, 130px); }
+  .hero-clip { width: 80vw; }
+  .hero-tag { letter-spacing: .3em; padding-left: .3em; }
   .hero-foot {
-    align-items: flex-end;
-    padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px) + 20px);
+    padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px) + 18px);
+    font-size: 10px;
+    letter-spacing: .14em;
   }
 
   .bleed-lg { display: none; }

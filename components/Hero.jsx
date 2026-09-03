@@ -2,14 +2,14 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Image from 'next/image';
 import Logo from './Logo';
-import { SITE, P } from '@/lib/data';
+import { SITE } from '@/lib/data';
 
-/* One photograph of the shopfront, full viewport, barely touched.
-   The wordmark is already in the picture — painted on the awning,
-   and again on the glass — so nothing is laid over it. The mark
-   sits down in the corner where a campaign would sign it. */
+/* Green ground, white wordmark, nothing else. The mark comes up
+   from behind its own edge and settles; the tagline follows letter
+   by letter; both drift and fade out as the page moves on. */
+
+const TAG = 'Café & Friends';
 
 export default function Hero() {
   const root = useRef(null);
@@ -17,18 +17,26 @@ export default function Hero() {
   useEffect(() => {
     const node = root.current;
     if (!node) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set(node.querySelectorAll('.hero-word, .hero-tag i, .hero-foot > *'), {
+        clearProps: 'all', opacity: 1, y: 0,
+      });
+      return;
+    }
 
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
-      gsap.timeline({ defaults: { ease: 'power3.out' } })
-        .from('.hero-sign > *', { opacity: 0, y: 20, duration: 1.1, stagger: 0.12 }, 0.25)
-        .from('.hero-go', { opacity: 0, y: 20, duration: 1 }, 0.45);
+      gsap.timeline({ defaults: { ease: 'expo.out' } })
+        .from('.hero-word', { yPercent: 116, scale: 1.08, duration: 1.5 })
+        .from('.hero-tag i', { yPercent: 130, opacity: 0, duration: 0.9, stagger: 0.035 }, 0.45)
+        .from('.hero-foot > *', { y: 22, opacity: 0, duration: 1, stagger: 0.1 }, 0.7);
 
-      gsap.to('.hero-shot', {
-        yPercent: 7,
+      /* the mark keeps moving a little slower than the page */
+      gsap.to('.hero-stage', {
+        yPercent: -14,
+        opacity: 0.25,
         ease: 'none',
-        scrollTrigger: { trigger: node, start: 'top top', end: 'bottom top', scrub: true },
+        scrollTrigger: { trigger: node, start: 'top top', end: 'bottom top', scrub: 0.6 },
       });
     }, node);
 
@@ -37,34 +45,27 @@ export default function Hero() {
 
   return (
     <section className="hero" ref={root}>
-      <div className="hero-shot">
-        <Image
-          src={P.hero.src}
-          alt={P.hero.alt}
-          fill
-          priority
-          quality={88}
-          sizes="100vw"
-          style={{ objectFit: 'cover' }}
-        />
-      </div>
-      <div className="hero-veil" />
+      <div className="hero-stage">
+        <h1 className="hero-h1">
+          <span className="hero-clip">
+            <Logo variant="word" className="hero-word" title={`${SITE.name} — ${SITE.tagline}`} />
+          </span>
+        </h1>
 
-      <h1 className="sr">
-        NOA — Café &amp; Friends, coffee shop de spécialité au {SITE.street}, Paris 19e
-      </h1>
+        <p className="hero-tag" aria-label={TAG}>
+          {[...TAG].map((ch, i) => (
+            <i key={i} aria-hidden="true">{ch === ' ' ? ' ' : ch}</i>
+          ))}
+        </p>
+      </div>
 
       <div className="hero-foot">
-        <div className="hero-sign">
-          <Logo variant="lockup" className="hero-mark" title={`${SITE.name} — ${SITE.tagline}`} />
-          <p className="hero-where">
-            {SITE.street}
-            <br />
-            Paris 19
-          </p>
-        </div>
-
-        <a className="hero-go" href="#suite">
+        <p>
+          {SITE.street}
+          <br />
+          Paris 19
+        </p>
+        <a href="#suite">
           <span aria-hidden="true">↓</span> Découvrir
         </a>
       </div>

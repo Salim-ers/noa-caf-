@@ -19,7 +19,7 @@ export default function Footer() {
         </nav>
       </div>
 
-      <Logo variant="lockup" className="ft-mark" title="NOA — Café & Friends" />
+      <Logo variant="word" className="ft-mark" title="NOA — Café & Friends" />
 
       <p className="lbl ft-bot">
         Coffee shop — Paris 19<sup>e</sup> — © {new Date().getFullYear()} NOA

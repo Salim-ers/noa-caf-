@@ -50,11 +50,18 @@ Cinq valeurs, pas une de plus.
 bols quasi circulaires, noire très lourde — la même famille de formes que
 le lettrage du store et de la vitrine. Aucun second caractère.
 
-**Logo.** `public/brand/` contient le vrai dessin de NOA, isolé depuis une
-photographie de la vitrine, posé en `mask-image` : un fichier prend
-`currentColor` et sert le blanc sur la photo comme le vert sur le crème.
+**Logo.** Deux marques, toutes deux relevées sur le lieu. Le logotype
+`NOA` de l'auvent, vectorisé dans `lib/logo.js`, est la marque
+principale : en-tête, hero, pied de page, bande défilante. Le dessin
+des deux tasses de la vitrine vit dans `public/brand/`, isolé depuis
+une photographie et posé en `mask-image`. Les deux héritent de
+`currentColor`, donc un seul fichier fait le blanc sur vert comme le
+vert sur crème.
 
-**Mouvement.** GSAP + ScrollTrigger, quatre gestes seulement : révélation
+**Mouvement.** GSAP + ScrollTrigger. Le logotype monte de derrière son
+propre bord, la signature suit lettre à lettre, et le bandeau `NOA`
+glisse — mais lié au scroll, jamais en boucle autonome. Ensuite quatre
+gestes seulement : révélation
 par clip, léger recadrage d'échelle, ligne masquée, parallaxe lente.
 L'état de repos est l'état vrai : les positions de départ sont en CSS
 derrière `html.js`, donc sans JavaScript rien n'est jamais caché, et

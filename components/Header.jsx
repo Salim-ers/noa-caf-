@@ -33,7 +33,7 @@ export default function Header() {
   return (
     <header className={`hd${solid || open ? ' hd-on' : ''}`}>
       <Link href="/" className="hd-mark" aria-label="NOA, accueil">
-        <Logo variant="mark" />
+        <Logo variant="word" />
       </Link>
 
       <nav className="hd-nav" aria-label="Principale">

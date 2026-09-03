@@ -1,34 +1,45 @@
-/* The real NOA mark: the two cups painted on the shop window,
-   lifted from a photograph of the vitrine and cut to an alpha
-   channel. Drawn as a CSS mask so one asset inherits currentColor
-   and serves every context — white on the photograph, green on
-   cream, ink on white — with no second file and no recolouring.
+import { LOGO_D, LOGO_VB } from '@/lib/logo';
 
-   variant="mark"   the two cups alone (legible down to ~32px)
-   variant="lockup" the cups above CAFÉ & FRIENDS */
+/* Two real NOA marks, both taken from the shop itself.
+
+   word    the NOA wordmark off the awning, vectorised. Rounded
+           stems, the oblique counter in the O, the flat-topped A.
+           This is the primary mark and the one used everywhere.
+   mark    the two cups painted on the window
+   lockup  those cups above CAFÉ & FRIENDS
+
+   All three inherit currentColor, so one asset does white on green
+   and green on cream with no second file. Width comes from CSS,
+   never inline, or a caller's class could not override it. */
 
 const ART = {
   mark: { src: '/brand/noa-mark.png', ratio: 642 / 542 },
   lockup: { src: '/brand/noa-lockup.png', ratio: 642 / 735 },
 };
 
-export default function Logo({ variant = 'lockup', title = 'NOA — Café & Friends', className, style }) {
+export default function Logo({ variant = 'word', title = 'NOA', className = '', style }) {
+  if (variant === 'word') {
+    return (
+      <svg
+        viewBox={LOGO_VB}
+        role="img"
+        aria-label={title}
+        className={`logo logo-word ${className}`.trim()}
+        style={style}
+      >
+        <path fill="currentColor" fillRule="evenodd" d={LOGO_D} />
+      </svg>
+    );
+  }
+
   const { src, ratio } = ART[variant] || ART.lockup;
   const mask = `url(${src}) center / contain no-repeat`;
-  /* Width lives in .logo (CSS), never inline: an inline width would
-     outrank every class a caller passes in and the mark would come
-     out full-bleed wherever it is used. */
   return (
     <span
       role="img"
       aria-label={title}
-      className={`logo ${className}`.trim()}
-      style={{
-        aspectRatio: String(ratio),
-        WebkitMask: mask,
-        mask,
-        ...style,
-      }}
+      className={`logo logo-mask ${className}`.trim()}
+      style={{ aspectRatio: String(ratio), WebkitMask: mask, mask, ...style }}
     />
   );
 }

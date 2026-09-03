@@ -99,7 +99,13 @@ le point précédent, les fichiers doivent venir de NOA.
 
 ## Marque
 
-`public/brand/noa-mark.png` et `noa-lockup.png` sont **le vrai logo NOA**,
+La marque principale est le **logotype `NOA` de l'auvent**, vectorisé
+dans `lib/logo.js`. Comparé au lettrage de la devanture, il concorde :
+mêmes fûts arrondis, même contrepoinçon oblique dans le O, même A à
+sommet plat. Ce n'est pas un dessin inventé.
+
+`public/brand/noa-mark.png` et `noa-lockup.png` sont **l'autre marque NOA**,
+le dessin des deux tasses de la vitrine,
 isolé depuis `window.jpg` : seuil sur la luminance, alpha adouci sur les
 bords, fond détouré. Le tracé n'a pas été redessiné — c'est le dessin de
 NOA, pas une reconstitution.

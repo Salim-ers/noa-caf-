@@ -5,6 +5,7 @@ import Reveal from '@/components/Reveal';
 import Fit from '@/components/Fit';
 import Favoris from '@/components/Favoris';
 import Gallery from '@/components/Gallery';
+import Marquee from '@/components/Marquee';
 import Reviews from '@/components/Reviews';
 import Social from '@/components/Social';
 import Visit from '@/components/Visit';
@@ -32,6 +33,8 @@ export default function Home() {
       </Reveal>
 
       <Favoris />
+
+      <Marquee />
 
       <section className="aside">
         <Reveal>
