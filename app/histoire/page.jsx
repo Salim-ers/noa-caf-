@@ -1,31 +1,35 @@
 import Fit from '@/components/Fit';
 import Photo from '@/components/Photo';
 import Reveal from '@/components/Reveal';
+import { P } from '@/lib/data';
 
 export const metadata = {
   title: 'Notre histoire',
-  description: 'NOA, café indépendant du 19e arrondissement de Paris, fondé par Noémie. Pâtisserie faite sur place.',
+  description:
+    'NOA, café indépendant du 19e arrondissement de Paris, ouvert par Noémie Gerardin. Pâtisserie faite sur place.',
   alternates: { canonical: '/histoire' },
 };
 
 export default function Histoire() {
   return (
     <div className="page">
-      <section className="pad head-pad">
-        <Fit className="ttl" weight={900} max={480}>Notre histoire</Fit>
+      <section className="head">
+        <Fit as="h1" max={470}>Notre histoire</Fit>
       </section>
+
       <section className="hist">
         <div>
           <p className="lede">
-            Un café indépendant du 19<sup>e</sup>, fondé par Noémie.<br />
+            Noémie Gerardin a passé quatre ans dans le marketing.
+            <br />
+            Puis elle a ouvert NOA, rue Mélingue.
+            <br />
             La pâtisserie est faite sur place.
           </p>
-          <p className="note" style={{ marginTop: 28 }}>
-            Le reste de l&apos;histoire doit venir de Noémie. Rien n&apos;a été écrit à sa place :
-            les récits qui circulent en ligne viennent de tiers, pas de NOA.
-          </p>
         </div>
-        <Reveal><Photo slot="15" ratio="4 / 5" sizes="(max-width:1000px) 100vw, 40vw" /></Reveal>
+        <Reveal kind="clip">
+          <Photo photo={P.team} ratio="4 / 5" sizes="(max-width: 1000px) 100vw, 42vw" />
+        </Reveal>
       </section>
     </div>
   );

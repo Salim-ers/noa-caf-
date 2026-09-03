@@ -1,7 +1,7 @@
 import Fit from '@/components/Fit';
 import Photo from '@/components/Photo';
 import Reveal from '@/components/Reveal';
-import { MENU } from '@/lib/data';
+import { MENU, P } from '@/lib/data';
 
 export const metadata = {
   title: 'La carte',
@@ -10,50 +10,46 @@ export const metadata = {
   alternates: { canonical: '/carte' },
 };
 
-const VIS = [
-  { slot: '10', n: 'Flat white', tone: 'paper' },
-  { slot: '11', n: 'Matcha', tone: 'green' },
-  { slot: '12', n: 'Avocado toast', tone: 'paper' },
-];
+const SHOTS = [P.coffee, P.matcha, P.toast];
+
+function price(p) {
+  return typeof p === 'number' ? `${p.toFixed(2).replace('.', ',')} €` : null;
+}
 
 export default function Carte() {
   return (
     <div className="page">
-      <section className="pad head-pad">
-        <Fit className="ttl" weight={900} max={480}>La carte</Fit>
+      <section className="head">
+        <Fit as="h1" max={470}>La carte</Fit>
       </section>
 
       <div className="carte-vis">
-        {VIS.map((v, i) => (
-          <Reveal key={v.slot} delay={i * 0.05}>
-            <Photo slot={v.slot} ratio="1 / 1" tone={v.tone} sizes="(max-width:760px) 100vw, 33vw" />
-            <p className="cv-n">{v.n}</p>
+        {SHOTS.map((photo, i) => (
+          <Reveal key={photo.src} kind="clip" delay={i * 0.05}>
+            <Photo photo={photo} ratio="1 / 1" sizes="(max-width: 760px) 100vw, 33vw" />
           </Reveal>
         ))}
       </div>
 
-      <section className="pad">
+      <section className="menu-wrap band-green">
         <div className="menu">
           {MENU.map((cat) => (
-            <div key={cat.id} className="menu-c">
+            <div key={cat.id}>
               <h2 className="menu-h">{cat.label}</h2>
               <ul>
                 {cat.items.map((it) => (
                   <li key={it.n}>
-                    <span className="mi-n">{it.n}{it.d && <em> — {it.d}</em>}</span>
-                    <span className="mi-p">
-                      {it.price == null ? '—' : `${it.price.toFixed(2).replace('.', ',')} €`}
+                    <span className="mi-n">
+                      {it.n}
+                      {it.d && <em> — {it.d}</em>}
                     </span>
+                    {price(it.price) && <span className="mi-p">{price(it.price)}</span>}
                   </li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-        <p className="note">
-          Carte partielle. Seuls les produits cités publiquement figurent ici, sans tarif :
-          NOA n&apos;a publié aucun prix officiel.
-        </p>
       </section>
     </div>
   );

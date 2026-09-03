@@ -1,34 +1,48 @@
 'use client';
-import Fit from './Fit';
+import Reveal from './Reveal';
 import useNow from './useNow';
 import { SITE, HOURS } from '@/lib/data';
 
-export default function Visit({ heading = false }) {
+/* Address, hours, directions. On a phone this is the part people
+   came for, so it stays plain text and one link out to the map. */
+
+export default function Visit() {
   const { idx, open } = useNow();
+
   return (
-    <section className="band-green pad">
-      <div className="visit">
-        <div>
-          {heading && <Fit weight={900} max={260} style={{ marginBottom: 28 }}>Venir</Fit>}
-          <p className="addr">{SITE.street}<br />{SITE.city}</p>
-          <p className="lbl" style={{ marginTop: 20, opacity: .75 }}>Métro Jourdain ou Pyrénées, ligne 11</p>
-          <div className="acts">
-            <a className="btn" href={SITE.maps} target="_blank" rel="noopener noreferrer">Itinéraire</a>
-            <a className="btn ghost" href={SITE.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
-          </div>
-        </div>
-        <div>
-          <p className="lbl" style={{ marginBottom: 14 }}>
-            Horaires{open !== null && ` — ${open ? 'ouvert' : 'fermé'} en ce moment`}
+    <section className="visit band-green" aria-labelledby="visit-t">
+      <div>
+        <h2 className="lbl" id="visit-t">Venir</h2>
+        <Reveal>
+          <p className="addr">
+            {SITE.street}
+            <br />
+            {SITE.city}
           </p>
-          <ul className="hrs">
-            {HOURS.map((h, i) => (
-              <li key={h.d} className={i === idx ? 'now' : ''}>
-                <span>{h.d}</span><span>{h.o} – {h.c}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        </Reveal>
+        <p className="visit-metro">Métro {SITE.metro}</p>
+        <p className="visit-go">
+          <a href={SITE.maps} target="_blank" rel="noopener noreferrer">
+            Itinéraire <span aria-hidden="true">→</span>
+          </a>
+        </p>
+      </div>
+
+      <div>
+        <p className="lbl">
+          Horaires
+          {open !== null && <span className="visit-now">{open ? ' — ouvert' : ' — fermé'}</span>}
+        </p>
+        <ul className="hrs">
+          {HOURS.map((h, i) => (
+            <li key={h.d} className={i === idx ? 'now' : ''}>
+              <span>{h.d}</span>
+              <span>
+                {h.o} – {h.c}
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

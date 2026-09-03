@@ -3,38 +3,59 @@ import { useRef, useLayoutEffect, useEffect } from 'react';
 
 const useIso = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
-/* Headline type scaled to fill its column edge to edge, the way the
-   lettering fills the awning on rue Melingue. This is the brand's
-   typographic rule, not a decoration. */
-export default function Fit({ children, weight = 900, style, className, tag: Tag = 'div', max = 400 }) {
+/* Display type set edge to edge in its column, the way NOA's own
+   lettering fills the awning. The first size comes from CSS — the
+   estimate below runs in container-query units, so the line is
+   already the right size on the server and nothing reflows — then
+   one measured pass makes it exact. */
+
+const LETTER = 0.585; /* average advance of Outfit 900 uppercase, in em */
+const SPACE = 0.225;
+
+function units(text) {
+  let u = 0;
+  for (const c of text) u += c === ' ' ? SPACE : LETTER;
+  return Math.max(u, LETTER);
+}
+
+export default function Fit({
+  children,
+  weight = 900,
+  max = 520,
+  className = '',
+  style,
+  as: Tag = 'div',
+}) {
   const box = useRef(null);
   const span = useRef(null);
+  const text = String(children);
 
   useIso(() => {
     const fit = () => {
-      const b = box.current, s = span.current;
+      const b = box.current;
+      const s = span.current;
       if (!b || !s) return;
       const target = b.clientWidth;
       if (!target) return;
       s.style.fontSize = '100px';
       const w = s.getBoundingClientRect().width;
       if (!w) return;
-      s.style.fontSize = Math.min(max, (target / w) * 100) + 'px';
+      s.style.fontSize = `${Math.min(max, (target / w) * 100)}px`;
     };
     fit();
     const ro = new ResizeObserver(fit);
     if (box.current) ro.observe(box.current);
     if (document.fonts) document.fonts.ready.then(fit).catch(() => {});
     return () => ro.disconnect();
-  }, [children, max]);
+  }, [text, max]);
 
   return (
-    <Tag ref={box} className={className} style={{ width: '100%', ...style }}>
-      <span ref={span} style={{
-        display: 'inline-block', whiteSpace: 'nowrap', fontSize: 40,
-        fontWeight: weight, lineHeight: 0.82, letterSpacing: '-0.035em',
-        textTransform: 'uppercase',
-      }}>{children}</span>
+    <Tag
+      ref={box}
+      className={`fit ${className}`.trim()}
+      style={{ '--u': units(text).toFixed(3), '--max': `${max}px`, ...style }}
+    >
+      <span ref={span} style={{ fontWeight: weight }}>{text}</span>
     </Tag>
   );
 }
