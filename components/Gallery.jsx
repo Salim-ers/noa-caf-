@@ -2,27 +2,42 @@ import Photo from './Photo';
 import Reveal from './Reveal';
 import { P } from '@/lib/data';
 
-/* No carousel, no equal cells. Seven photographs at five different
-   sizes, each starting on its own row and then pulled back up so
-   the column edges never line up twice. The gaps are part of it. */
+/* Ordered, not scattered. A wide plate, then a matched pair, then a
+   wide plate, then a triptych — four beats you can feel, instead of
+   photographs dropped at odd offsets down the page. Every row lines
+   up on the same grid and the images stay big. */
 
-const PLATES = [
-  { k: 'g1', photo: P.interior, ratio: '3 / 2', sizes: '(max-width: 800px) 100vw, 66vw' },
-  { k: 'g2', photo: P.coffee, ratio: '4 / 5', sizes: '(max-width: 800px) 100vw, 30vw' },
-  { k: 'g3', photo: P.toast, ratio: '4 / 5', sizes: '(max-width: 800px) 100vw, 40vw' },
-  { k: 'g4', photo: P.dog, ratio: '3 / 2', sizes: '(max-width: 800px) 100vw, 54vw' },
-  { k: 'g5', photo: P.counter, ratio: '4 / 5', sizes: '(max-width: 800px) 100vw, 56vw' },
-  { k: 'g6', photo: P.window, ratio: '4 / 5', sizes: '(max-width: 800px) 100vw, 30vw' },
-  { k: 'g7', photo: P.terrace, ratio: '16 / 9', sizes: '100vw' },
+const ROWS = [
+  { k: 'wide', items: [{ photo: P.terrace, ratio: '16 / 9', sizes: '100vw' }] },
+  {
+    k: 'pair',
+    items: [
+      { photo: P.counter, ratio: '4 / 5', sizes: '(max-width: 800px) 100vw, 50vw' },
+      { photo: P.window, ratio: '4 / 5', sizes: '(max-width: 800px) 100vw, 50vw' },
+    ],
+  },
+  { k: 'wide', items: [{ photo: P.toast, ratio: '16 / 9', sizes: '100vw' }] },
+  {
+    k: 'trio',
+    items: [
+      { photo: P.dog, ratio: '1 / 1', sizes: '(max-width: 800px) 100vw, 33vw' },
+      { photo: P.matcha, ratio: '1 / 1', sizes: '(max-width: 800px) 100vw, 33vw' },
+      { photo: P.coffee, ratio: '1 / 1', sizes: '(max-width: 800px) 100vw, 33vw' },
+    ],
+  },
 ];
 
 export default function Gallery() {
   return (
     <div className="gal">
-      {PLATES.map(({ k, photo, ratio, sizes }) => (
-        <Reveal key={k} kind="clip" className={`gal-i ${k}`}>
-          <Photo photo={photo} ratio={ratio} sizes={sizes} />
-        </Reveal>
+      {ROWS.map((row, r) => (
+        <div className={`gal-${row.k}`} key={r}>
+          {row.items.map((it, i) => (
+            <Reveal key={it.photo.src} kind="clip" delay={i * 0.06}>
+              <Photo photo={it.photo} ratio={it.ratio} sizes={it.sizes} />
+            </Reveal>
+          ))}
+        </div>
       ))}
     </div>
   );

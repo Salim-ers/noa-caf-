@@ -1,5 +1,6 @@
 import Photo from './Photo';
 import Reveal from './Reveal';
+import { withO } from './Glyph';
 import { SOCIAL, SITE } from '@/lib/data';
 
 /* NOA is already a picture feed before it is a website, so the
@@ -13,7 +14,7 @@ export default function Social() {
       <Reveal>
         <h2 id="soc-t">
           <a className="soc-h" href={SITE.instagram} target="_blank" rel="noopener noreferrer">
-            {SITE.handle}
+            {withO(SITE.handle)}
           </a>
         </h2>
       </Reveal>

@@ -72,6 +72,18 @@ export default function Reveal({
         scrollTrigger: st,
         onComplete: done,
       });
+    } else if (kind === 'flash') {
+      /* snaps in rather than easing: short, hard, one line after
+         the next, the way a sign lights up */
+      anim = gsap.to(node, {
+        opacity: 1,
+        scaleX: 1,
+        duration: 0.34,
+        ease: 'power4.out',
+        delay,
+        scrollTrigger: st,
+        onComplete: done,
+      });
     } else if (kind === 'float') {
       anim = gsap.to(node.firstElementChild || node, {
         yPercent: amount,

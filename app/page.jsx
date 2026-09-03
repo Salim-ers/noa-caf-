@@ -8,7 +8,7 @@ import Gallery from '@/components/Gallery';
 import Marquee from '@/components/Marquee';
 import Reviews from '@/components/Reviews';
 import Social from '@/components/Social';
-import Visit from '@/components/Visit';
+import { Bean } from '@/components/Glyph';
 import { P } from '@/lib/data';
 
 export const metadata = {
@@ -22,9 +22,9 @@ export default function Home() {
       <Hero />
 
       <section id="suite" className="say band-green">
-        <Reveal kind="mask"><Fit max={440}>Bon café.</Fit></Reveal>
-        <Reveal kind="mask" delay={0.07}><Fit max={440}>Bonne cuisine.</Fit></Reveal>
-        <Reveal kind="mask" delay={0.14}><Fit max={440}>Bonnes personnes.</Fit></Reveal>
+        <Reveal kind="flash"><Fit max={300}>Bon café.</Fit></Reveal>
+        <Reveal kind="flash" delay={0.16}><Fit max={300}>Bonne cuisine.</Fit></Reveal>
+        <Reveal kind="flash" delay={0.32}><Fit max={300}>Bonnes personnes.</Fit></Reveal>
       </section>
 
       <Reveal kind="clip" className="bleed">
@@ -38,7 +38,10 @@ export default function Home() {
 
       <section className="aside">
         <Reveal>
-          <p>Petit, et c’est voulu.</p>
+          <p>
+            Petit, et c’est voulu.
+            <Bean className="bean-inline" />
+          </p>
           <Link href="/lieu">Le lieu</Link>
         </Reveal>
       </section>
@@ -47,7 +50,6 @@ export default function Home() {
 
       <Reviews />
       <Social />
-      <Visit />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Photo from './Photo';
 import Reveal from './Reveal';
+import { withO } from './Glyph';
 import { FAVORIS } from '@/lib/data';
 
 /* Photograph, then name, then photograph, then name. The picture
@@ -31,7 +32,7 @@ export default function Favoris() {
           <Reveal className="fav-name" delay={0.05}>
             <h3>
               {f.n.map((line) => (
-                <span key={line}>{line}</span>
+                <span key={line}>{withO(line)}</span>
               ))}
             </h3>
             {f.d && <p>{f.d}</p>}

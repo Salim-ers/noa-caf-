@@ -91,6 +91,7 @@ sup { font-size: .58em; vertical-align: super; }
 .head {
   padding: clamp(44px, 7vw, 92px) var(--pad) clamp(26px, 4vw, 48px);
 }
+.head .fit { width: 58%; }
 
 .lede {
   font-size: clamp(20px, 2.7vw, 32px);
@@ -111,6 +112,27 @@ sup { font-size: .58em; vertical-align: super; }
 /* Display type set edge to edge in its column. The size is worked
    out in container-query units, so it is right before any script
    runs; Fit.jsx then makes it exact. */
+/* The O of the enseigne, dropped into running display type. Sized
+   to the cap height with the round letter's usual overshoot, and
+   dropped a hair below the baseline for the same reason. */
+.bean {
+  display: inline-block;
+  height: .82em;
+  width: auto;
+  vertical-align: baseline;
+  opacity: .45;
+}
+.bean-inline { margin-left: .5em; }
+
+.oglyph {
+  display: inline-block;
+  white-space: nowrap;
+  height: .745em;
+  width: auto;
+  vertical-align: baseline;
+  margin-bottom: -.022em;
+}
+
 .fit { container-type: inline-size; width: 100%; }
 .fit > span {
   display: inline-block;
@@ -128,6 +150,7 @@ sup { font-size: .58em; vertical-align: super; }
 .js [data-r="clip"] img { transform: scale(1.09); }
 .js [data-r="mask"] { overflow: hidden; }
 .js [data-r="mask"] > span { display: block; transform: translateY(108%); }
+.js [data-r="flash"] { opacity: 0; transform: scaleX(.965); transform-origin: left center; }
 [data-r="float"] > span { display: block; }
 
 /* ── header ─────────────────────────────────────────────────── */
@@ -215,7 +238,21 @@ sup { font-size: .58em; vertical-align: super; }
   padding: 0 var(--pad);
 }
 
-.hero-stage { grid-row: 2; width: 100%; display: grid; justify-items: center; }
+.dd {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: .2;
+  pointer-events: none;
+}
+
+.hero-stage { grid-row: 2; position: relative; width: 100%; display: grid; justify-items: center; }
 .hero-h1 { width: 100%; display: grid; justify-items: center; }
 
 /* the mark rides up from behind its own edge */
@@ -235,6 +272,7 @@ sup { font-size: .58em; vertical-align: super; }
 .hero-tag i { font-style: normal; display: inline-block; white-space: pre; }
 
 .hero-foot {
+  position: relative;
   grid-row: 3;
   align-self: end;
   width: 100%;
@@ -253,7 +291,12 @@ sup { font-size: .58em; vertical-align: super; }
 
 /* ── the line ───────────────────────────────────────────────── */
 
+/* Fit fills whatever column it is given, so the way to bring the
+   display sizes down is to narrow the column, not to cap the size —
+   capping would break the flush-both-edges block. */
 .say { padding: var(--band) var(--pad); }
+.say .fit { width: 72%; }
+.say .fit > span { letter-spacing: -.035em; }
 .say > * + * { margin-top: .06em; }
 
 /* ── full-bleed plate ───────────────────────────────────────── */
@@ -269,8 +312,15 @@ sup { font-size: .58em; vertical-align: super; }
   color: var(--white);
   padding: clamp(26px, 4vw, 54px) 0;
 }
-.mq-row { display: flex; gap: clamp(30px, 5vw, 80px); width: max-content; }
-.mq-word { flex: none; height: clamp(46px, 8vw, 116px); width: auto; display: block; }
+.mq-row { display: flex; width: max-content; will-change: transform; }
+.mq-unit {
+  display: flex;
+  align-items: center;
+  gap: clamp(26px, 4vw, 62px);
+  padding-right: clamp(26px, 4vw, 62px);
+}
+.mq-word { flex: none; height: clamp(38px, 5.4vw, 78px); width: auto; display: block; }
+.mq-bean { flex: none; height: clamp(28px, 3.4vw, 48px); width: auto; display: block; opacity: .8; }
 
 /* ── les favoris ────────────────────────────────────────────── */
 
@@ -280,23 +330,25 @@ sup { font-size: .58em; vertical-align: super; }
 .fav {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: clamp(16px, 3vw, 44px);
+  gap: clamp(16px, 3vw, 40px);
   align-items: end;
-  margin-bottom: clamp(48px, 7vw, 104px);
+  margin-bottom: clamp(34px, 4.4vw, 62px);
 }
-.fav-shot { grid-column: 1 / 9; grid-row: 1; }
-.fav-name { grid-column: 9 / 13; grid-row: 1; padding-bottom: clamp(4px, 1.4vw, 22px); }
+.fav-shot { grid-column: 1 / 6; grid-row: 1; }
+.fav-name { grid-column: 6 / 11; grid-row: 1; padding-bottom: clamp(4px, 1vw, 14px); }
 .fav-alt { align-items: start; }
-.fav-alt .fav-shot { grid-column: 6 / 13; }
+.fav-alt .fav-shot { grid-column: 8 / 13; }
 .fav-alt .fav-name {
-  grid-column: 1 / 6;
-  padding-top: clamp(4px, 1.4vw, 22px);
+  grid-column: 3 / 8;
+  padding-top: clamp(4px, 1vw, 14px);
   padding-bottom: 0;
+  text-align: right;
 }
-.fav-solo .fav-name { grid-column: 1 / 13; }
+.fav-solo { justify-items: center; }
+.fav-solo .fav-name { grid-column: 4 / 10; text-align: center; }
 
 .fav h3 {
-  font-size: clamp(30px, 4.9vw, 72px);
+  font-size: clamp(26px, 3.4vw, 50px);
   font-weight: 900;
   /* French display caps carry accents: PETIT-DÉJEUNER stacks an acute
      directly under the line above. .85 made them touch. */
@@ -304,9 +356,9 @@ sup { font-size: .58em; vertical-align: super; }
   letter-spacing: -.045em;
   text-transform: uppercase;
 }
-.fav h3 span { display: block; }
-.fav-solo h3 { font-size: clamp(48px, 11.5vw, 186px); }
-.fav-name p { margin-top: 16px; font-size: 15px; opacity: .78; }
+.fav h3 > span { display: block; white-space: nowrap; }
+.fav-solo h3 { font-size: clamp(34px, 5vw, 76px); }
+.fav-name p { margin-top: 12px; font-size: 14px; opacity: .78; }
 
 .favs-more a {
   font-size: 13px;
@@ -339,23 +391,10 @@ sup { font-size: .58em; vertical-align: super; }
 
 /* ── gallery ────────────────────────────────────────────────── */
 
-.gal {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: var(--gap);
-  padding: 0 var(--pad) var(--band);
-}
-.g1 { grid-column: 1 / 11; grid-row: 1; }
-.g2 { grid-column: 9 / 13; grid-row: 2; margin-top: -26%; }
-.g3 { grid-column: 1 / 7;  grid-row: 3; }
-.g4 { grid-column: 6 / 13; grid-row: 4; margin-top: -14%; }
-.g5 { grid-column: 1 / 9;  grid-row: 5; }
-.g6 { grid-column: 8 / 13; grid-row: 6; margin-top: -40%; }
-/* runs past the page padding, edge to edge */
-.g7 {
-  grid-column: 1 / 13; grid-row: 7;
-  margin: clamp(24px, 4vw, 64px) calc(var(--pad) * -1) 0;
-}
+.gal { display: grid; gap: var(--gap); padding: 0 var(--pad) var(--band); }
+.gal-wide { display: block; }
+.gal-pair { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gap); }
+.gal-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
 
 /* ── reviews ────────────────────────────────────────────────── */
 
@@ -507,18 +546,76 @@ sup { font-size: .58em; vertical-align: super; }
   color: var(--white);
   padding: clamp(48px, 7vw, 92px) var(--pad) 0;
 }
-.ft-top {
+
+.ft-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) minmax(0, 1.2fr);
+  gap: clamp(28px, 4vw, 72px);
+  padding-bottom: clamp(38px, 5vw, 68px);
+}
+.ft-cols .lbl { opacity: .62; }
+.is-open { opacity: 1; }
+.is-shut { opacity: .62; }
+
+.ft-addr {
+  margin-top: 14px;
+  font-size: clamp(21px, 2.3vw, 32px);
+  font-weight: 900;
+  letter-spacing: -.03em;
+  line-height: 1.06;
+  text-transform: uppercase;
+}
+.ft-metro { margin-top: 12px; font-size: 14px; opacity: .74; }
+.ft-go { margin-top: 22px; }
+.ft-go a {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 4px;
+}
+
+.hrs { margin-top: 14px; }
+.hrs li {
   display: flex;
   justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-  padding-bottom: clamp(32px, 5vw, 58px);
-  border-bottom: 1px solid rgba(251, 248, 243, .18);
+  gap: 18px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(251, 248, 243, .16);
+  font-size: 14px;
 }
+.hrs li span:first-child { opacity: .7; }
+.hrs li.now { font-weight: 700; }
+.hrs li.now span { opacity: 1; }
+
+/* The map is a live OpenStreetMap frame. Its own colours would
+   fight the page, so it is pushed toward the brand green and sits
+   behind a thin border rather than a card. */
+.ft-map { position: relative; min-height: 230px; }
+.ft-map iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(1) sepia(.62) hue-rotate(122deg) saturate(.85) brightness(.52) contrast(1.12);
+}
+.ft-map::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(251, 248, 243, .28);
+}
+
 .ft-nav {
   display: flex;
+  justify-content: center;
   gap: clamp(14px, 2vw, 30px);
   flex-wrap: wrap;
+  padding: clamp(24px, 3vw, 36px) 0;
+  border-top: 1px solid rgba(251, 248, 243, .18);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: .14em;
@@ -526,8 +623,16 @@ sup { font-size: .58em; vertical-align: super; }
 }
 .ft-nav a { padding-bottom: 3px; border-bottom: 1.5px solid transparent; }
 .ft-nav a:hover { border-bottom-color: currentColor; }
-.ft-mark { width: min(62vw, 520px); margin-top: clamp(38px, 5vw, 64px); }
-.ft-bot { padding: clamp(26px, 3vw, 38px) 0 clamp(30px, 4vw, 44px); opacity: .5; }
+
+.ft-mark {
+  width: min(70vw, 560px);
+  margin: clamp(26px, 4vw, 52px) auto 0;
+}
+.ft-bot {
+  padding: clamp(22px, 3vw, 34px) 0 clamp(28px, 4vw, 42px);
+  opacity: .5;
+  text-align: center;
+}
 
 /* ── mobile dock ────────────────────────────────────────────── */
 
@@ -545,13 +650,13 @@ sup { font-size: .58em; vertical-align: super; }
     margin-top: 18px;
   }
   .fav-alt .fav-shot { margin-left: auto; }
+  .fav-alt .fav-name, .fav-solo .fav-name { text-align: left; }
+  .fav-solo { justify-items: stretch; }
   .hist { grid-template-columns: 1fr; }
-  .g1 { grid-column: 1 / 11; }
-  .g2 { grid-column: 8 / 13; margin-top: -22%; }
-  .g3 { grid-column: 1 / 7; }
-  .g4 { grid-column: 6 / 13; margin-top: -10%; }
-  .g5 { grid-column: 1 / 10; }
-  .g6 { grid-column: 8 / 13; margin-top: -30%; }
+  .say .fit { width: 88%; }
+  .head .fit { width: 76%; }
+  .ft-cols { grid-template-columns: 1fr 1fr; }
+  .ft-map { grid-column: 1 / 3; min-height: 260px; }
 }
 
 @media (max-width: 760px) {
@@ -582,15 +687,15 @@ sup { font-size: .58em; vertical-align: super; }
   /* Photographs go edge to edge on a phone: the picture is the page. */
   .fav-shot { margin: 0 calc(var(--pad) * -1); }
 
-  .gal { gap: 12px; }
-  .g1, .g2, .g3, .g4, .g5, .g6, .g7 { grid-column: 1 / 13; margin-top: 0; }
-  .g1 { grid-row: auto; } .g2 { grid-row: auto; } .g3 { grid-row: auto; }
-  .g4 { grid-row: auto; } .g5 { grid-row: auto; } .g6 { grid-row: auto; }
-  .g7 { grid-row: auto; }
-  .gal { padding-left: 0; padding-right: 0; }
+  .gal { gap: 12px; padding-left: 0; padding-right: 0; }
+  .gal-pair, .gal-trio { grid-template-columns: 1fr; gap: 12px; }
 
+  .say .fit, .head .fit { width: 100%; }
   .revs { grid-template-columns: 1fr; gap: 28px; }
   .visit { grid-template-columns: 1fr; }
+  .ft-cols { grid-template-columns: 1fr; }
+  .ft-map { grid-column: auto; min-height: 240px; }
+  .ft-mark { width: 84vw; }
   .menu { grid-template-columns: 1fr; gap: 34px; }
   .carte-vis { grid-template-columns: 1fr; gap: 14px; padding: 0; }
   .soc-grid { grid-template-columns: repeat(3, 1fr); }

@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Logo from './Logo';
+import Doodles from './Doodles';
 import { SITE } from '@/lib/data';
 
 /* Green ground, white wordmark, nothing else. The mark comes up
@@ -45,6 +46,8 @@ export default function Hero() {
 
   return (
     <section className="hero" ref={root}>
+      <Doodles />
+
       <div className="hero-stage">
         <h1 className="hero-h1">
           <span className="hero-clip">

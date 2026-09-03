@@ -1,5 +1,6 @@
 'use client';
 import { useRef, useLayoutEffect, useEffect } from 'react';
+import { withO } from './Glyph';
 
 const useIso = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
@@ -55,7 +56,7 @@ export default function Fit({
       className={`fit ${className}`.trim()}
       style={{ '--u': units(text).toFixed(3), '--max': `${max}px`, ...style }}
     >
-      <span ref={span} style={{ fontWeight: weight }}>{text}</span>
+      <span ref={span} style={{ fontWeight: weight }}>{withO(text)}</span>
     </Tag>
   );
 }

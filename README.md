@@ -67,6 +67,16 @@ L'état de repos est l'état vrai : les positions de départ sont en CSS
 derrière `html.js`, donc sans JavaScript rien n'est jamais caché, et
 `prefers-reduced-motion` va droit au repos.
 
+**Le O.** `lib/glyph.js` isole le O du logotype — son contrepoinçon
+oblique — et `components/Glyph.jsx` le réinjecte dans les titres à la
+place du O de la fonte. C'est ce qui fait qu'un titre appartient à NOA
+et pas à Outfit. Le même fichier fournit le grain de café, dessiné dans
+la même main que les tasses de la vitrine.
+
+**La carte du pied de page.** Un cadre OpenStreetMap, déplaçable, sans
+clé d'API ni script de suivi, teinté vers le vert de marque en CSS.
+L'attribution OSM reste visible : elle est exigée par la licence.
+
 **Photographies.** Chaque image n'est déclarée qu'une fois, dans
 `lib/data.js` → `P`, avec ses vraies dimensions. Remplacez un fichier sous
 le même nom, corrigez `w`/`h`, et tout le site suit.
