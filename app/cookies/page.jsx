@@ -30,19 +30,19 @@ export default function Cookies() {
 
         <h2>La seule exception</h2>
         <p>
-          Le plan affiché en pied de page est un cadre OpenStreetMap. En
-          l’affichant, OpenStreetMap peut déposer ses propres cookies
-          techniques, nécessaires au fonctionnement de la carte. Ils
-          relèvent d’OpenStreetMap, pas de NOA, et ne servent ni à la
-          publicité ni au profilage.
+          Le plan est un cadre Google Maps. En l’affichant, Google dépose
+          ses propres cookies, dont certains servent à la publicité et à la
+          mesure. Ils relèvent de Google, pas de NOA : NOA ne les lit pas et
+          n’en tire aucune information.
         </p>
 
         <h2>Reprendre la main</h2>
         <p>
           Tout navigateur permet de bloquer ou d’effacer les cookies, site
-          par site, dans ses réglages de confidentialité. Bloquer ceux
-          d’OpenStreetMap peut empêcher le plan de s’afficher ; le reste du
-          site continuera de fonctionner normalement.
+          par site, dans ses réglages de confidentialité. Bloquer les
+          cookies tiers empêche le plan de s’afficher ; le reste du site
+          continue de fonctionner normalement, et le lien Itinéraire mène au
+          même endroit sans rien charger d’avance.
         </p>
 
         <h2>Si cela change</h2>

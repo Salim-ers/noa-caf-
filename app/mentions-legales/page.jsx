@@ -59,8 +59,8 @@ export default function MentionsLegales() {
 
         <h2>Cartographie</h2>
         <p>
-          Le plan affiché en pied de page provient d’OpenStreetMap, dont les données sont
-          publiées sous licence ODbL par ses contributeurs.
+          Les plans affichés sur ce site sont fournis par Google Maps et restent soumis
+          aux conditions d’utilisation de Google.
         </p>
 
         <h2>Données personnelles</h2>

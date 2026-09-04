@@ -31,11 +31,14 @@ export default function Confidentialite() {
 
         <h2>Les deux seules exceptions</h2>
         <p>
-          <strong>Le plan.</strong> Le plan du pied de page est un cadre
-          fourni par OpenStreetMap. En l’affichant, votre navigateur
-          contacte les serveurs d’OpenStreetMap, qui reçoivent alors votre
-          adresse IP, comme pour toute page consultée sur leur site. NOA n’a
-          accès à aucune de ces informations.
+          <strong>Le plan.</strong> Le plan est un cadre fourni par Google
+          Maps. En l’affichant, votre navigateur contacte les serveurs de
+          Google, qui reçoivent votre adresse IP et peuvent déposer leurs
+          propres traceurs, y compris publicitaires. C’est le prix d’un plan
+          Google, et NOA n’a accès à aucune de ces informations. Si vous
+          préférez l’éviter, bloquez les cookies tiers dans votre navigateur
+          ou passez par le lien Itinéraire, qui ne charge rien tant que vous
+          ne cliquez pas.
         </p>
         <p>
           <strong>Les liens sortants.</strong> Les liens vers Instagram,

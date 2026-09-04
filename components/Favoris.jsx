@@ -5,14 +5,10 @@ import Fit from './Fit';
 import { withO, Bean } from './Glyph';
 import { FAVORIS } from '@/lib/data';
 
-/* Four products, two by two. The alternating version left half the
-   green empty on every row — a photograph on one side and a hole on
-   the other. Here each product is a picture with its name right
-   under it, so the column is full all the way down.
-
-   The pictures grow a little under the cursor. The zoom lives on the
-   image inside its frame, which stays put, so nothing on the page
-   moves when you point at one. */
+/* Four products across, and the row does not sit level: the second
+   and fourth drop, so the eye travels instead of scanning a table.
+   Each picture grows a little under the cursor, inside a frame that
+   stays put, so pointing at one moves nothing else. */
 
 export default function Favoris() {
   return (
@@ -22,13 +18,13 @@ export default function Favoris() {
         <Bean className="favs-bean" />
       </div>
 
-      <div className="favs-grid">
-        {FAVORIS.map((f) => (
-          <article className="fav" key={f.n.join(' ')}>
-            <Reveal kind="clip" className="fav-shot">
-              <Photo photo={f.photo} ratio="1 / 1" sizes="(max-width: 800px) 100vw, 34vw" />
+      <div className="favs-row">
+        {FAVORIS.map((f, i) => (
+          <article className={`fav${i % 2 ? ' fav-drop' : ''}`} key={f.n.join(' ')}>
+            <Reveal kind="clip" className="fav-shot" delay={i * 0.07}>
+              <Photo photo={f.photo} ratio="4 / 5" sizes="(max-width: 800px) 50vw, 23vw" />
             </Reveal>
-            <Reveal className="fav-name" delay={0.05}>
+            <Reveal className="fav-name" delay={i * 0.07 + 0.05}>
               <h3>
                 {f.n.map((line) => (
                   <span key={line}>{withO(line)}</span>

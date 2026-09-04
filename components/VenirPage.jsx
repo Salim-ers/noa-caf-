@@ -2,8 +2,8 @@
 import Photo from '@/components/Photo';
 import Reveal from '@/components/Reveal';
 import Doodles from '@/components/Doodles';
-import useNow from '@/components/useNow';
-import { SITE, HOURS, P } from '@/lib/data';
+import Hours from '@/components/Hours';
+import { SITE, P } from '@/lib/data';
 
 /* Refaite. L'ancienne page répétait mot pour mot le pied de page.
    Celle-ci répond aux questions qu'on se pose vraiment en chemin :
@@ -19,8 +19,6 @@ const ACCESS = [
 ];
 
 export default function VenirPage() {
-  const { idx, open } = useNow();
-
   return (
     <div className="page venir">
       <section className="venir-top">
@@ -45,28 +43,9 @@ export default function VenirPage() {
         </div>
       </section>
 
-      <section className="venir-hours band-green">
+      <section className="venir-hours" aria-labelledby="venir-h">
         <Doodles behind />
-        <h2 className="lbl venir-hours-t">
-          Horaires
-          {open !== null && (
-            <span className={open ? 'is-open' : 'is-shut'}>
-              {open ? ' — ouvert en ce moment' : ' — fermé en ce moment'}
-            </span>
-          )}
-        </h2>
-        <ul className="hrs-days hrs-days-lg">
-          {HOURS.map((h, i) => (
-            <li key={h.d} className={i === idx ? 'now' : ''}>
-              <span className="hrs-d">{h.d.slice(0, 3)}</span>
-              <span className="hrs-h">
-                {h.o}
-                <i aria-hidden="true">–</i>
-                {h.c}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <Hours size="lg" id="venir-h" />
       </section>
 
       <section className="venir-access">
