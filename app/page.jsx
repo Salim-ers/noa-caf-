@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Hero from '@/components/Hero';
 import Photo from '@/components/Photo';
 import Reveal from '@/components/Reveal';
@@ -28,7 +27,7 @@ export default function Home() {
       </section>
 
       <Reveal kind="clip" className="bleed">
-        <Photo photo={P.spread} ratio="16 / 9" sizes="100vw" className="bleed-lg" />
+        <Photo photo={P.spreadWide} sizes="100vw" className="bleed-lg" />
         <Photo photo={P.spread} ratio="4 / 5" sizes="100vw" className="bleed-sm" />
       </Reveal>
 
@@ -37,12 +36,11 @@ export default function Home() {
       <Marquee />
 
       <section className="aside">
-        <Reveal>
+        <Reveal kind="flash">
           <p>
             Petit, et c’est voulu.
             <Bean className="bean-inline" />
           </p>
-          <Link href="/lieu">Le lieu</Link>
         </Reveal>
       </section>
 

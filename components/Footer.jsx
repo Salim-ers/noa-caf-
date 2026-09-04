@@ -1,21 +1,29 @@
 'use client';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Logo from './Logo';
 import useNow from './useNow';
-import { NAV } from '@/lib/nav';
+import { NAV, LEGAL } from '@/lib/nav';
 import { SITE, HOURS } from '@/lib/data';
 
-/* Everything a reader still needs at the end of any page: where it
-   is, when it is open, and a map they can move around. Then the
-   wordmark, centred, and nothing after it. */
+/* Everything a reader still needs at the end of any page.
+
+   The hours are the part people actually come for, so they are not a
+   list of small grey rows any more: seven blocks across, day over
+   time, and today filled in so you find it without reading. */
 
 export default function Footer() {
   const { idx, open } = useNow();
+  /* Venir carries the address, the hours and a full-width map of its
+     own. Repeating all three straight underneath read as a mistake,
+     so there the footer keeps only its tail. */
+  const brief = usePathname() === '/venir';
 
   return (
     <footer className="ft">
+      {!brief && (
       <div className="ft-cols">
-        <div className="ft-where">
+        <div>
           <h2 className="lbl">Venir</h2>
           <p className="ft-addr">
             {SITE.street}
@@ -30,27 +38,6 @@ export default function Footer() {
           </p>
         </div>
 
-        <div className="ft-when">
-          <h2 className="lbl">
-            Horaires
-            {open !== null && (
-              <span className={open ? 'is-open' : 'is-shut'}>
-                {open ? ' — ouvert' : ' — fermé'}
-              </span>
-            )}
-          </h2>
-          <ul className="hrs">
-            {HOURS.map((h, i) => (
-              <li key={h.d} className={i === idx ? 'now' : ''}>
-                <span>{h.d}</span>
-                <span>
-                  {h.o} – {h.c}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
         <div className="ft-map">
           <iframe
             src={SITE.map}
@@ -60,6 +47,32 @@ export default function Footer() {
           />
         </div>
       </div>
+      )}
+
+      {!brief && (
+      <div className="hrs-band">
+        <h2 className="lbl hrs-lbl">
+          Horaires
+          {open !== null && (
+            <span className={open ? 'is-open' : 'is-shut'}>
+              {open ? ' — ouvert en ce moment' : ' — fermé en ce moment'}
+            </span>
+          )}
+        </h2>
+        <ul className="hrs-days">
+          {HOURS.map((h, i) => (
+            <li key={h.d} className={i === idx ? 'now' : ''}>
+              <span className="hrs-d">{h.d.slice(0, 3)}</span>
+              <span className="hrs-h">
+                {h.o}
+                <i aria-hidden="true">–</i>
+                {h.c}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      )}
 
       <nav className="ft-nav" aria-label="Pied de page">
         {NAV.map(([href, label]) => (
@@ -71,9 +84,16 @@ export default function Footer() {
 
       <Logo variant="word" className="ft-mark" title="NOA — Café & Friends" />
 
-      <p className="lbl ft-bot">
-        Coffee shop — Paris 19<sup>e</sup> — © {new Date().getFullYear()} NOA
-      </p>
+      <div className="ft-bot">
+        <p className="lbl">
+          Coffee shop — Paris 19<sup>e</sup> — © {new Date().getFullYear()} NOA
+        </p>
+        <nav className="ft-legal" aria-label="Informations légales">
+          {LEGAL.map(([href, label]) => (
+            <Link key={href} href={href}>{label}</Link>
+          ))}
+        </nav>
+      </div>
     </footer>
   );
 }

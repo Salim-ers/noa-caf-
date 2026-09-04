@@ -1,19 +1,24 @@
 import Fit from '@/components/Fit';
 import Photo from '@/components/Photo';
 import Reveal from '@/components/Reveal';
+import Doodles from '@/components/Doodles';
+import { Bean } from '@/components/Glyph';
 import { MENU, P } from '@/lib/data';
 
 export const metadata = {
   title: 'La carte',
   description:
-    'La carte de NOA, coffee shop Paris 19e : café de spécialité, matcha, petit-déjeuner scandinave, brownie matcha et cookies faits maison.',
+    'La carte de NOA, coffee shop Paris 19e : café de spécialité, matcha, petit-déjeuner scandinave, carrot cake, brownie matcha et cookies faits maison.',
   alternates: { canonical: '/carte' },
 };
 
-const SHOTS = [P.coffee, P.matcha, P.toast];
-
+/* Prix en euros, virgule décimale, espace insécable avant le signe —
+   la typographie française, pas celle du navigateur. Un prix absent
+   n'affiche rien plutôt qu'un tiret : NOA ne les a pas tous confirmés
+   et une case vide se lit mieux qu'un trou balisé. */
 function price(p) {
-  return typeof p === 'number' ? `${p.toFixed(2).replace('.', ',')} €` : null;
+  if (typeof p !== 'number') return null;
+  return `${p.toFixed(2).replace('.', ',')} €`;
 }
 
 export default function Carte() {
@@ -23,31 +28,33 @@ export default function Carte() {
         <Fit as="h1" max={470}>La carte</Fit>
       </section>
 
-      <div className="carte-vis">
-        {SHOTS.map((photo, i) => (
-          <Reveal key={photo.src} kind="clip" delay={i * 0.05}>
-            <Photo photo={photo} ratio="1 / 1" sizes="(max-width: 760px) 100vw, 33vw" />
-          </Reveal>
-        ))}
-      </div>
+      <Reveal kind="clip" className="bleed">
+        <Photo photo={P.cardWide} sizes="100vw" priority />
+      </Reveal>
 
       <section className="menu-wrap band-green">
+        <Doodles behind />
+
         <div className="menu">
           {MENU.map((cat) => (
-            <div key={cat.id}>
-              <h2 className="menu-h">{cat.label}</h2>
+            <section className="menu-cat" key={cat.id}>
+              <h2 className="menu-h">
+                {cat.label}
+                <Bean className="menu-bean" />
+              </h2>
               <ul>
-                {cat.items.map((it) => (
-                  <li key={it.n}>
+                {cat.items.map((it, i) => (
+                  <Reveal as="li" key={it.n} delay={i * 0.04}>
                     <span className="mi-n">
                       {it.n}
                       {it.d && <em> — {it.d}</em>}
                     </span>
+                    <span className="mi-dots" aria-hidden="true" />
                     {price(it.price) && <span className="mi-p">{price(it.price)}</span>}
-                  </li>
+                  </Reveal>
                 ))}
               </ul>
-            </div>
+            </section>
           ))}
         </div>
       </section>

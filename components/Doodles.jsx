@@ -127,7 +127,7 @@ const MARKS = [
   { x: 78, y: 82, s: 11, r: 9, o: 0.44 },
 ];
 
-export default function Doodles() {
+export default function Doodles({ behind = false }) {
   const root = useRef(null);
 
   useEffect(() => {
@@ -168,7 +168,7 @@ export default function Doodles() {
   }, []);
 
   return (
-    <div className="dd" ref={root} aria-hidden="true">
+    <div className={`dd${behind ? ' dd-quiet' : ''}`} ref={root} aria-hidden="true">
       {PIECES.map((p, i) => (
         <svg
           key={i}
