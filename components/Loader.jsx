@@ -1,33 +1,36 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { LOGO_D, LOGO_VB } from '@/lib/logo';
 
-/* L'écran d'ouverture : le logotype se remplit de café.
+/* L'écran d'ouverture : les deux tasses de la vitrine se remplissent
+   de café.
 
-   Le tracé sert de masque. Dessous, deux couches : un aplat très
-   pâle pour les lettres vides, et le café qui monte par-dessus. La
-   surface n'est pas droite — c'est une vague recalculée à chaque
-   image, dont l'amplitude retombe à mesure que ça se remplit, comme
-   un liquide qui se stabilise.
+   Le dessin sert de masque au conteneur, donc tout ce qu'il contient
+   n'apparaît qu'à l'intérieur du tracé : un aplat très pâle pour le
+   dessin vide, et le café qui monte par-dessus. La surface n'est pas
+   droite — c'est une vague recalculée à chaque image, dont
+   l'amplitude retombe à mesure que ça se remplit, comme un liquide
+   qui se stabilise.
 
    Le voile est rendu côté serveur mais la feuille de style ne
    l'affiche que sous html.js : sans JavaScript il n'apparaît jamais,
    donc il ne peut pas bloquer la page. Un garde-fou le retire au
    bout de 3,5 s quoi qu'il arrive, et un clic passe. */
 
-const W = 1708;
-const H = 540;
-const STEPS = 8;
+/* les dimensions du fichier de marque, pour que la vague ne soit pas
+   déformée par l'étirement du cadre */
+const W = 642;
+const H = 542;
+const STEPS = 7;
 
 function wave(level, phase, amp) {
-  /* level 0 = vide, 1 = plein. On déborde un peu en haut et en bas
-     pour qu'aucun bord de vague n'affleure dans les lettres. */
+  /* level 0 = vide, 1 = plein ; on déborde en haut et en bas pour
+     qu'aucun bord de vague n'affleure dans le dessin */
   const y = H + 40 - level * (H + 80);
   const pts = [];
   for (let i = 0; i <= STEPS; i++) {
     const x = (W / STEPS) * i;
-    pts.push([x, y + Math.sin(phase + i * 0.85) * amp]);
+    pts.push([x, y + Math.sin(phase + i * 0.9) * amp]);
   }
   let d = `M ${pts[0][0]} ${pts[0][1]}`;
   for (let i = 1; i <= STEPS; i++) {
@@ -62,7 +65,7 @@ export default function Loader() {
     const guard = setTimeout(done, 3500);
     node.addEventListener('click', done);
 
-    const state = { level: 0, phase: 0, amp: 20 };
+    const state = { level: 0, phase: 0, amp: 22 };
     const draw = () => {
       if (fill.current) {
         fill.current.setAttribute('d', wave(state.level, state.phase, state.amp));
@@ -88,17 +91,12 @@ export default function Loader() {
 
   return (
     <div className="ld" ref={root} aria-hidden="true">
-      <svg className="ld-mark" viewBox={LOGO_VB}>
-        <defs>
-          <mask id="ld-mask">
-            <path d={LOGO_D} fill="#fff" fillRule="evenodd" />
-          </mask>
-        </defs>
-        <g mask="url(#ld-mask)">
-          <rect x="0" y="0" width={W} height={H} className="ld-empty" />
-          <path ref={fill} className="ld-fill" d={wave(0, 0, 20)} />
-        </g>
-      </svg>
+      <div className="ld-mark">
+        <div className="ld-empty" />
+        <svg className="ld-liquid" viewBox={`0 0 ${W} ${H}`}>
+          <path ref={fill} className="ld-fill" d={wave(0, 0, 22)} />
+        </svg>
+      </div>
     </div>
   );
 }

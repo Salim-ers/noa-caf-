@@ -834,8 +834,17 @@ sup { font-size: .58em; vertical-align: super; }
   background: var(--white);
   cursor: pointer;
 }
-.ld-mark { width: min(56vw, 460px); height: auto; display: block; }
-.ld-empty { fill: rgba(21, 17, 14, .07); }
+/* Le dessin masque le conteneur, donc l'aplat pâle et le café
+   n'apparaissent qu'à l'intérieur du tracé des deux tasses. */
+.ld-mark {
+  position: relative;
+  width: min(46vw, 340px);
+  aspect-ratio: 642 / 542;
+  -webkit-mask: url(/brand/noa-mark.png) center / contain no-repeat;
+  mask: url(/brand/noa-mark.png) center / contain no-repeat;
+}
+.ld-empty { position: absolute; inset: 0; background: rgba(107, 69, 38, .16); }
+.ld-liquid { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .ld-fill { fill: #6B4526; }
 
 /* ── bandeau cookies ──────────────────── */
@@ -1041,7 +1050,7 @@ sup { font-size: .58em; vertical-align: super; }
     bottom: calc(56px + env(safe-area-inset-bottom, 0px) + 10px);
     grid-template-columns: 64px minmax(0, 1fr);
   }
-  .ld-mark { width: 74vw; }
+  .ld-mark { width: 62vw; }
 }
 
 @media (prefers-reduced-motion: reduce) {
