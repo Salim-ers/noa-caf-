@@ -3,6 +3,7 @@ import Photo from '@/components/Photo';
 import Reveal from '@/components/Reveal';
 import Doodles from '@/components/Doodles';
 import Hours from '@/components/Hours';
+import MapFrame from '@/components/MapFrame';
 import { SITE, P } from '@/lib/data';
 
 /* Refaite. L'ancienne page répétait mot pour mot le pied de page.
@@ -60,12 +61,7 @@ export default function VenirPage() {
       </section>
 
       <section className="venir-map" aria-label="Plan">
-        <iframe
-          src={SITE.map}
-          title="Plan — 6 rue Mélingue, Paris 19e"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
+        <MapFrame title="Plan — 6 rue Mélingue, Paris 19e" />
       </section>
     </div>
   );

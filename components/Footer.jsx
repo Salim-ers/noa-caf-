@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import Logo from './Logo';
 import Doodles from './Doodles';
 import Hours from './Hours';
+import MapFrame from './MapFrame';
 import { NAV, LEGAL } from '@/lib/nav';
 import { SITE } from '@/lib/data';
 
@@ -39,12 +40,7 @@ export default function Footer() {
           </div>
 
           <div className="ft-map">
-            <iframe
-              src={SITE.map}
-              title="Plan — 6 rue Mélingue, Paris 19e"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+            <MapFrame title="Plan — 6 rue Mélingue, Paris 19e" />
           </div>
         </div>
       )}

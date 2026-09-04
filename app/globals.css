@@ -669,14 +669,8 @@ sup { font-size: .58em; vertical-align: super; }
 .venir-access dt { opacity: .5; margin-bottom: 10px; }
 .venir-access dd { font-size: clamp(16px, 1.4vw, 20px); line-height: 1.45; font-weight: 500; }
 
-.venir-map { position: relative; height: clamp(320px, 46vh, 560px); }
-.venir-map iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
+.venir-map { position: relative; height: clamp(320px, 46vh, 560px); display: grid; }
+.venir-map iframe { width: 100%; height: 100%; border: 0; }
 
 /* ── footer ──────────────────────────── */
 
@@ -717,14 +711,8 @@ sup { font-size: .58em; vertical-align: super; }
 
 /* Google's own map, unfiltered: tinting it green made it harder to
    read than it was worth. */
-.ft-map { position: relative; min-height: clamp(200px, 22vw, 280px); }
-.ft-map iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
+.ft-map { position: relative; min-height: clamp(200px, 22vw, 280px); display: grid; }
+.ft-map iframe { width: 100%; height: 100%; border: 0; }
 
 .ft-hours { padding-bottom: clamp(30px, 4vw, 52px); }
 
@@ -832,6 +820,116 @@ sup { font-size: .58em; vertical-align: super; }
 .ft-legal a { padding-bottom: 2px; border-bottom: 1.5px solid transparent; }
 .ft-legal a:hover { border-bottom-color: currentColor; }
 
+/* ── ecran d'ouverture ─────────────────── */
+
+/* Rendu par le serveur mais affiche seulement sous html.js : sans
+   JavaScript rien ne le retirerait, donc il ne doit pas exister. */
+.ld { display: none; }
+.js .ld {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: var(--white);
+  cursor: pointer;
+}
+.ld-mark { width: min(56vw, 460px); height: auto; display: block; }
+.ld-empty { fill: rgba(21, 17, 14, .07); }
+.ld-fill { fill: #6B4526; }
+
+/* ── bandeau cookies ──────────────────── */
+
+.ck {
+  position: fixed;
+  left: var(--pad);
+  bottom: clamp(16px, 2.5vw, 30px);
+  z-index: 150;
+  width: min(560px, calc(100vw - var(--pad) * 2));
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: clamp(14px, 2vw, 22px);
+  padding: clamp(16px, 2vw, 22px);
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px rgba(21, 17, 14, .16), 0 18px 50px rgba(21, 17, 14, .14);
+  animation: ck-in .7s cubic-bezier(.16, .84, .28, 1) both;
+}
+@keyframes ck-in {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: none; }
+}
+
+.ck-shot { position: relative; overflow: hidden; aspect-ratio: 1; }
+.ck-shot img { width: 100%; height: 100%; object-fit: cover; }
+
+.ck-h {
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: -.025em;
+  margin-bottom: 6px;
+}
+.ck-txt p { font-size: 13.5px; line-height: 1.5; }
+.ck-more { margin-top: 8px; }
+.ck-more a {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .6;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 2px;
+}
+
+.ck-acts {
+  grid-column: 1 / 3;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ck-acts button {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  padding: 12px 20px;
+}
+.ck-yes { background: var(--green); color: var(--white); }
+.ck-yes:hover { background: var(--ink); }
+.ck-no { box-shadow: inset 0 0 0 1.5px rgba(21, 17, 14, .22); }
+.ck-no:hover { box-shadow: inset 0 0 0 1.5px rgba(21, 17, 14, .5); }
+
+/* ── plan en attente d'accord ────────────── */
+
+.mapoff {
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  height: 100%;
+  min-height: inherit;
+  padding: clamp(20px, 3vw, 34px);
+  box-shadow: inset 0 0 0 1px currentColor;
+  opacity: .92;
+}
+.mapoff-a {
+  font-size: clamp(17px, 1.8vw, 24px);
+  font-weight: 900;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.mapoff-w { font-size: 13px; opacity: .68; max-width: 34ch; }
+.mapoff-b { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
+.mapoff-b button,
+.mapoff-b a {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 4px;
+}
+
 /* ── mobile dock ────────────────────────────────────────────── */
 
 .dock { display: none; }
@@ -936,6 +1034,14 @@ sup { font-size: .58em; vertical-align: super; }
   .hrs-h { font-size: 12px; }
 
   .ft-bot { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .ck {
+    left: 10px;
+    right: 10px;
+    width: auto;
+    bottom: calc(56px + env(safe-area-inset-bottom, 0px) + 10px);
+    grid-template-columns: 64px minmax(0, 1fr);
+  }
+  .ld-mark { width: 74vw; }
 }
 
 @media (prefers-reduced-motion: reduce) {

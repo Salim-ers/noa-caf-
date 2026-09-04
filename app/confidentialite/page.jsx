@@ -32,13 +32,15 @@ export default function Confidentialite() {
         <h2>Les deux seules exceptions</h2>
         <p>
           <strong>Le plan.</strong> Le plan est un cadre fourni par Google
-          Maps. En l’affichant, votre navigateur contacte les serveurs de
-          Google, qui reçoivent votre adresse IP et peuvent déposer leurs
-          propres traceurs, y compris publicitaires. C’est le prix d’un plan
-          Google, et NOA n’a accès à aucune de ces informations. Si vous
-          préférez l’éviter, bloquez les cookies tiers dans votre navigateur
-          ou passez par le lien Itinéraire, qui ne charge rien tant que vous
-          ne cliquez pas.
+          Maps. L’afficher fait contacter les serveurs de Google, qui
+          reçoivent votre adresse IP et déposent leurs propres traceurs, y
+          compris publicitaires. NOA n’a accès à aucune de ces informations.
+        </p>
+        <p>
+          C’est pour ça que la question vous est posée en arrivant : tant que
+          vous n’avez pas répondu, ou si vous refusez, aucune requête n’est
+          envoyée à Google. La place du plan affiche l’adresse et un bouton.
+          Voir la page <a href="/cookies">Cookies</a>.
         </p>
         <p>
           <strong>Les liens sortants.</strong> Les liens vers Instagram,

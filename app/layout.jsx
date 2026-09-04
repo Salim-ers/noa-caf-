@@ -2,6 +2,8 @@ import { Outfit } from 'next/font/google';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Dock from '@/components/Dock';
+import Loader from '@/components/Loader';
+import Consent from '@/components/Consent';
 import { SITE, C } from '@/lib/data';
 import './globals.css';
 
@@ -119,10 +121,12 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(LD) }}
         />
+        <Loader />
         <Header />
         <main>{children}</main>
         <Footer />
         <Dock />
+        <Consent />
       </body>
     </html>
   );
