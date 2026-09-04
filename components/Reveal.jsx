@@ -54,7 +54,13 @@ export default function Reveal({
 
     if (kind === 'clip') {
       const img = node.querySelector('img');
-      anim = gsap.timeline({ scrollTrigger: st, delay, onComplete: done });
+      /* hand the transform back to CSS at the end, or the inline
+         scale left behind would outrank any :hover rule */
+      const settle = () => {
+        done();
+        if (img) gsap.set(img, { clearProps: 'transform' });
+      };
+      anim = gsap.timeline({ scrollTrigger: st, delay, onComplete: settle });
       anim.to(node, {
         clipPath: 'inset(0% 0% 0% 0%)',
         duration: 1.2,

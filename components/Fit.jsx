@@ -26,6 +26,7 @@ export default function Fit({
   className = '',
   style,
   as: Tag = 'div',
+  ...rest
 }) {
   const box = useRef(null);
   const span = useRef(null);
@@ -55,6 +56,7 @@ export default function Fit({
       ref={box}
       className={`fit ${className}`.trim()}
       style={{ '--u': units(text).toFixed(3), '--max': `${max}px`, ...style }}
+      {...rest}
     >
       <span ref={span} style={{ fontWeight: weight }}>{withO(text)}</span>
     </Tag>

@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from './Logo';
+import Doodles from './Doodles';
 import useNow from './useNow';
 import { NAV, LEGAL } from '@/lib/nav';
 import { SITE, HOURS } from '@/lib/data';
@@ -21,6 +22,7 @@ export default function Footer() {
 
   return (
     <footer className="ft">
+      <Doodles behind tone="oak" />
       {!brief && (
       <div className="ft-cols">
         <div>

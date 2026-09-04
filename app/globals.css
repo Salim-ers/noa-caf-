@@ -265,6 +265,14 @@ sup { font-size: .58em; vertical-align: super; }
 .dd-quiet .dd-line { opacity: .17; }
 .dd-quiet .dd-mark { opacity: .12 !important; }
 
+/* The same drawings on a light ground: oak rather than white, and
+   quieter still, because brown on cream carries further than white
+   on green. */
+.dd-oak .dd-line { stroke: var(--oak); opacity: .34; }
+.dd-oak.dd-quiet .dd-line { opacity: .2; }
+.dd-oak .dd-mark { filter: brightness(0) saturate(1) invert(62%) sepia(28%) saturate(560%) hue-rotate(354deg) brightness(92%); }
+.dd-oak.dd-quiet .dd-mark { opacity: .14 !important; }
+
 .dd-line {
   fill: none;
   stroke: var(--white);
@@ -348,9 +356,14 @@ sup { font-size: .58em; vertical-align: super; }
 /* ── les favoris ──────────────────────── */
 
 .favs { padding: var(--band) var(--pad); }
-.favs-head { display: flex; align-items: center; gap: 12px; margin-bottom: clamp(24px, 4vw, 48px); }
-.favs-head .lbl { opacity: .74; }
-.favs-bean { height: 20px; opacity: .5; }
+.favs-head {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(14px, 2vw, 28px);
+  margin-bottom: clamp(28px, 4vw, 56px);
+}
+.favs-head .fit { width: 46%; }
+.favs-bean { height: clamp(24px, 3vw, 44px); opacity: .45; flex: none; margin-bottom: .1em; }
 
 /* Two columns. The alternating layout left half of every row empty;
    a pair fills the width and the green becomes a ground. */
@@ -358,8 +371,17 @@ sup { font-size: .58em; vertical-align: super; }
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: clamp(20px, 3.4vw, 54px) clamp(20px, 3vw, 44px);
+  max-width: 1120px;
 }
+
+/* The frame holds still and the picture grows inside it, so pointing
+   at one moves nothing else on the page. */
 .fav-shot { display: block; }
+.fav-shot .ph img {
+  transition: transform 1.1s cubic-bezier(.16, .84, .28, 1);
+  transform-origin: center;
+}
+.fav:hover .fav-shot .ph img { transform: scale(1.07); }
 .fav-name { margin-top: clamp(14px, 1.6vw, 22px); }
 .fav h3 {
   font-size: clamp(26px, 3.2vw, 46px);
@@ -384,9 +406,12 @@ sup { font-size: .58em; vertical-align: super; }
 /* ── aside line ─────────────────────── */
 
 .aside {
+  position: relative;
+  overflow: hidden;
   padding: clamp(56px, 9vw, 132px) var(--pad);
   text-align: center;
 }
+.aside p { position: relative; }
 .aside p {
   font-size: clamp(30px, 6.4vw, 104px);
   font-weight: 900;
@@ -466,47 +491,55 @@ sup { font-size: .58em; vertical-align: super; }
 
 /* ── carte ───────────────────────────── */
 
-/* NOA's own card is white handwriting on dark slate, so the list is
-   set on the green rather than on the page ground. */
+/* On the green the list read as a wall of small white rows. On the
+   cream ground the type can carry it: the category is a heading
+   rather than a label, the item is set at reading size, and the
+   price is the one thing in green. */
 .menu-wrap { position: relative; overflow: hidden; padding: var(--band) var(--pad); }
 .menu {
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: clamp(34px, 5vw, 76px) clamp(34px, 6vw, 96px);
+  gap: clamp(44px, 6vw, 96px) clamp(44px, 7vw, 120px);
+  max-width: 1240px;
 }
 .menu-h {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .17em;
+  align-items: baseline;
+  gap: 12px;
+  font-size: clamp(22px, 2.4vw, 34px);
+  font-weight: 900;
+  letter-spacing: -.035em;
   text-transform: uppercase;
-  padding-bottom: 12px;
-  border-bottom: 1.5px solid currentColor;
-  margin-bottom: 4px;
-  opacity: .8;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 6px;
 }
-.menu-bean { height: 15px; opacity: .55; }
+.menu-bean { height: clamp(15px, 1.5vw, 21px); opacity: .4; flex: none; }
 .menu-cat li {
   display: flex;
   align-items: baseline;
   gap: 10px;
-  padding: 13px 0;
-  border-bottom: 1px solid rgba(251, 248, 243, .14);
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(21, 17, 14, .12);
 }
-.mi-n { font-size: 17px; font-weight: 600; letter-spacing: -.012em; }
-.mi-n em { font-style: normal; font-weight: 400; opacity: .6; }
+.mi-n { font-size: clamp(16px, 1.4vw, 19px); font-weight: 600; letter-spacing: -.012em; }
+.mi-n em { font-style: normal; font-weight: 400; opacity: .55; }
 /* the leader between name and price, drawn rather than typed */
 .mi-dots {
   flex: 1;
   min-width: 18px;
   align-self: center;
-  border-bottom: 1px dotted rgba(251, 248, 243, .34);
+  border-bottom: 1px dotted rgba(21, 17, 14, .28);
   transform: translateY(-2px);
 }
-.mi-p { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.mi-p {
+  font-size: clamp(16px, 1.4vw, 19px);
+  font-weight: 900;
+  color: var(--green);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.02em;
+}
 
 /* ── histoire ────────────────────────── */
 
@@ -615,11 +648,18 @@ sup { font-size: .58em; vertical-align: super; }
 
 /* ── footer ──────────────────────────── */
 
+/* The footer used to be another slab of green, arriving straight
+   after a green section — address, hours and map all fighting on the
+   same ground. It sits on the cream now: the green comes back only
+   where it means something, on today's hours and on the wordmark. */
 .ft {
-  background: var(--green);
-  color: var(--white);
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+  color: var(--ink);
   padding: clamp(48px, 7vw, 92px) var(--pad) 0;
 }
+.ft > *:not(.dd) { position: relative; }
 
 .ft-cols {
   display: grid;
@@ -628,7 +668,7 @@ sup { font-size: .58em; vertical-align: super; }
   align-items: center;
   padding-bottom: clamp(34px, 4.5vw, 62px);
 }
-.ft-cols .lbl { opacity: .6; }
+.ft-cols .lbl { opacity: .5; }
 
 .ft-addr {
   margin-top: 14px;
@@ -638,20 +678,18 @@ sup { font-size: .58em; vertical-align: super; }
   line-height: 1.04;
   text-transform: uppercase;
 }
-.ft-metro { margin-top: 12px; font-size: 14px; opacity: .74; }
+.ft-metro { margin-top: 12px; font-size: 14px; opacity: .66; }
 .ft-go { margin-top: 22px; }
 .ft-go a {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: .17em;
   text-transform: uppercase;
+  color: var(--green);
   border-bottom: 1.5px solid currentColor;
   padding-bottom: 4px;
 }
 
-/* The map is a live OpenStreetMap frame. Its own palette fights the
-   page, so it is nudged toward the green — lightly, because a map
-   people cannot read is worse than one that clashes. */
 .ft-map { position: relative; min-height: clamp(200px, 22vw, 280px); }
 .ft-map iframe {
   position: absolute;
@@ -659,65 +697,71 @@ sup { font-size: .58em; vertical-align: super; }
   width: 100%;
   height: 100%;
   border: 0;
-  filter: grayscale(1) sepia(.5) hue-rotate(124deg) saturate(.72) brightness(.9);
+  filter: grayscale(1) sepia(.5) hue-rotate(124deg) saturate(.72) brightness(.98);
 }
 .ft-map::after {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
-  box-shadow: inset 0 0 0 1px rgba(251, 248, 243, .3);
+  box-shadow: inset 0 0 0 1px rgba(21, 17, 14, .16);
 }
 
 /* ── hours, as a band rather than a list ────────── */
 
-/* Seven blocks across, day over time, today filled in. It is the
-   thing people came to the footer for, so it should not read as the
-   small print. */
+/* Seven blocks across, day over time, today filled in green. It is
+   the thing people came down here for, so it is set at reading size
+   and not as small print. */
 .hrs-band {
   position: relative;
   padding: clamp(26px, 3.4vw, 44px) 0;
-  border-top: 1px solid rgba(251, 248, 243, .18);
-  border-bottom: 1px solid rgba(251, 248, 243, .18);
+  border-top: 1px solid rgba(21, 17, 14, .14);
+  border-bottom: 1px solid rgba(21, 17, 14, .14);
 }
-.hrs-lbl { opacity: .6; margin-bottom: clamp(16px, 2vw, 26px); }
-.is-open { opacity: 1; }
-.is-shut { opacity: .6; }
+.hrs-lbl { margin-bottom: clamp(16px, 2vw, 26px); opacity: .5; }
+.is-open { color: var(--green); opacity: 1; }
+.is-shut { opacity: .55; }
 
 .hrs-days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: clamp(6px, .8vw, 12px);
+  gap: clamp(6px, .7vw, 10px);
 }
 .hrs-days li {
   display: grid;
-  gap: 8px;
-  padding: clamp(12px, 1.4vw, 20px) clamp(8px, 1vw, 16px);
-  box-shadow: inset 0 0 0 1px rgba(251, 248, 243, .22);
+  gap: 10px;
+  padding: clamp(14px, 1.6vw, 22px) clamp(8px, 1vw, 16px);
+  box-shadow: inset 0 0 0 1px rgba(21, 17, 14, .16);
 }
 .hrs-d {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: .16em;
   text-transform: uppercase;
-  opacity: .66;
+  opacity: .5;
 }
 .hrs-h {
-  font-size: clamp(13px, 1.15vw, 17px);
-  font-weight: 700;
+  font-size: clamp(15px, 1.35vw, 20px);
+  font-weight: 900;
+  letter-spacing: -.02em;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
-.hrs-h i { font-style: normal; padding: 0 .28em; opacity: .5; }
+.hrs-h i { font-style: normal; padding: 0 .22em; opacity: .4; font-weight: 500; }
 .hrs-days li.now {
-  background: var(--white);
-  color: var(--green);
+  background: var(--green);
+  color: var(--white);
   box-shadow: none;
 }
-.hrs-days li.now .hrs-d { opacity: .72; }
+.hrs-days li.now .hrs-d { opacity: .8; }
 
-.hrs-days-lg li { padding: clamp(16px, 2vw, 30px) clamp(10px, 1.2vw, 20px); }
-.hrs-days-lg .hrs-h { font-size: clamp(14px, 1.35vw, 20px); }
+/* on the green pages the band inverts */
+.band-green .hrs-days li { box-shadow: inset 0 0 0 1px rgba(251, 248, 243, .22); }
+.band-green .hrs-days li.now { background: var(--white); color: var(--green); box-shadow: none; }
+.band-green .is-open { color: inherit; }
+
+.hrs-days-lg li { padding: clamp(18px, 2.2vw, 32px) clamp(10px, 1.2vw, 20px); }
+.hrs-days-lg .hrs-h { font-size: clamp(16px, 1.5vw, 23px); }
 
 /* ── footer tail ────────────────────── */
 
@@ -738,6 +782,7 @@ sup { font-size: .58em; vertical-align: super; }
 .ft-mark {
   width: min(70vw, 560px);
   margin: clamp(20px, 3vw, 42px) auto 0;
+  color: var(--green);
 }
 
 .ft-bot {
@@ -748,8 +793,8 @@ sup { font-size: .58em; vertical-align: super; }
   flex-wrap: wrap;
   padding: clamp(22px, 3vw, 34px) 0 clamp(28px, 4vw, 42px);
   margin-top: clamp(20px, 3vw, 36px);
-  border-top: 1px solid rgba(251, 248, 243, .14);
-  opacity: .58;
+  border-top: 1px solid rgba(21, 17, 14, .12);
+  opacity: .6;
 }
 .ft-legal {
   display: flex;
@@ -841,6 +886,8 @@ sup { font-size: .58em; vertical-align: super; }
   }
   .dock a + a { box-shadow: inset 1.5px 0 0 rgba(251, 248, 243, .22); }
 
+  .favs-head { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .favs-head .fit { width: 78%; }
   .favs-grid { grid-template-columns: 1fr; gap: 34px; }
   .fav-shot { margin: 0 calc(var(--pad) * -1); }
 

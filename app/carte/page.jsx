@@ -32,8 +32,8 @@ export default function Carte() {
         <Photo photo={P.cardWide} sizes="100vw" priority />
       </Reveal>
 
-      <section className="menu-wrap band-green">
-        <Doodles behind />
+      <section className="menu-wrap">
+        <Doodles behind tone="oak" />
 
         <div className="menu">
           {MENU.map((cat) => (
