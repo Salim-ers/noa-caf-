@@ -27,8 +27,8 @@ export default function Home() {
       </section>
 
       <Reveal kind="clip" className="bleed">
-        <Photo photo={P.carrotCakeWide} sizes="100vw" className="bleed-lg" />
-        <Photo photo={P.carrotCakeWide} ratio="4 / 5" sizes="100vw" className="bleed-sm" />
+        <Photo photo={P.duoWide} sizes="100vw" className="bleed-lg" />
+        <Photo photo={P.duoWide} ratio="4 / 5" sizes="100vw" className="bleed-sm" />
       </Reveal>
 
       <Favoris />

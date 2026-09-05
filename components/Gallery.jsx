@@ -7,8 +7,9 @@ import { P } from '@/lib/data';
    lâchées à des décalages arbitraires. Toutes les lignes tombent sur
    la même grille et les images restent grandes.
 
-   Rien que le lieu ici : la nourriture a ses propres pages, et
-   aucune photo ne sert deux fois sur la page. */
+   Rien que le lieu ici : aucune assiette, aucune tasse, pas même la
+   vitrine à pâtisseries — la nourriture a ses propres pages. Et
+   aucune photo ne sert deux fois. */
 
 const ROWS = [
   { k: 'wide', items: [{ photo: P.facade, ratio: '16 / 9', sizes: '100vw' }] },
@@ -23,8 +24,8 @@ const ROWS = [
     k: 'trio',
     items: [
       { photo: P.window, ratio: '1 / 1', sizes: '(max-width: 800px) 100vw, 33vw' },
-      { photo: P.case, ratio: '1 / 1', sizes: '(max-width: 800px) 100vw, 33vw' },
       { photo: P.terrace, ratio: '1 / 1', sizes: '(max-width: 800px) 100vw, 33vw' },
+      { photo: P.hero, ratio: '1 / 1', sizes: '(max-width: 800px) 100vw, 33vw' },
     ],
   },
 ];

@@ -1,10 +1,9 @@
 'use client';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import useConsent from './useConsent';
+import { CookieDrawing } from './Glyph';
 import { writeConsent, YES, NO } from '@/lib/consent';
-import { P } from '@/lib/data';
 
 /* Le bandeau cookies, et il fait vraiment quelque chose.
 
@@ -14,8 +13,9 @@ import { P } from '@/lib/data';
    chargé : le pied de page et la page Venir affichent l'adresse et
    un bouton à la place.
 
-   La photo est le cookie de NOA. C'est la blague, et c'est aussi la
-   seule illustration honnête du sujet. */
+   Le cookie est dessiné, pas photographié : la vraie photographie
+   rendait la blague trop littérale, et un trait tient mieux à côté
+   des autres dessins du site. */
 
 export default function Consent() {
   const consent = useConsent();
@@ -33,14 +33,7 @@ export default function Consent() {
   return (
     <aside className="ck" role="dialog" aria-label="Cookies">
       <div className="ck-shot">
-        <Image
-          src={P.cookie.src}
-          alt=""
-          width={160}
-          height={160}
-          sizes="160px"
-          quality={80}
-        />
+        <CookieDrawing />
       </div>
 
       <div className="ck-txt">

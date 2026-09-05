@@ -63,7 +63,7 @@ export default function Histoire() {
         </div>
 
         <Reveal kind="clip" className="story-shot-b">
-          <Photo photo={P.cakeLatte} ratio="1 / 1" sizes="(max-width: 900px) 100vw, 40vw" />
+          <Photo photo={P.case} ratio="1 / 1" sizes="(max-width: 900px) 100vw, 40vw" />
         </Reveal>
 
         <div className="story-text story-text-b">
