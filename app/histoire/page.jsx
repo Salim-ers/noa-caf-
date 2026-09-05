@@ -34,7 +34,7 @@ export default function Histoire() {
         </Reveal>
 
         <Reveal kind="clip" className="story-shot-a">
-          <Photo photo={P.brunch} ratio="4 / 5" sizes="(max-width: 900px) 100vw, 44vw" />
+          <Photo photo={P.counter} ratio="4 / 5" sizes="(max-width: 900px) 100vw, 44vw" />
         </Reveal>
 
         <div className="story-text">

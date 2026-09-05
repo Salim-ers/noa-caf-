@@ -8,7 +8,8 @@ import { P } from '@/lib/data';
    la même grille et les images restent grandes.
 
    Rien que le lieu ici : aucune assiette, aucune tasse, pas même la
-   vitrine à pâtisseries — la nourriture a ses propres pages. Et
+   vitrine à pâtisseries derrière le comptoir — c'est ce qui a fait
+   sortir counter.jpg d'ici. La nourriture a ses propres pages, et
    aucune photo ne sert deux fois. */
 
 const ROWS = [
@@ -16,8 +17,8 @@ const ROWS = [
   {
     k: 'pair',
     items: [
-      { photo: P.counter, ratio: '4 / 5', sizes: '(max-width: 800px) 100vw, 50vw' },
       { photo: P.interior, ratio: '4 / 5', sizes: '(max-width: 800px) 100vw, 50vw' },
+      { photo: P.salleTables, ratio: '4 / 5', sizes: '(max-width: 800px) 100vw, 50vw' },
     ],
   },
   {

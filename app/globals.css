@@ -602,6 +602,16 @@ sup { font-size: .58em; vertical-align: super; }
   opacity: .74;
 }
 
+/* ── le nouveau local ─────────────────── */
+
+.salon { padding: 0 var(--pad) var(--band); display: grid; gap: var(--gap); }
+.salon-lead { display: block; }
+.salon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+
 /* ── histoire ────────────────────────── */
 
 .story {
@@ -1065,6 +1075,7 @@ sup { font-size: .58em; vertical-align: super; }
 
   .venir-access dl { grid-template-columns: 1fr; }
   .soon { grid-template-columns: 1fr; gap: 26px; }
+  .salon-grid { grid-template-columns: repeat(2, 1fr); }
   .soon-shot { margin: 0 calc(var(--pad) * -1); }
 
   /* seven blocks do not fit across a phone, so they wrap to two rows */

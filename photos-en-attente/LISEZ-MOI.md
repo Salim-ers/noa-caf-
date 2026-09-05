@@ -1,41 +1,26 @@
-# En attente de vérification
+# Quatre photos en attente
 
-Ces dix fichiers ont été déposés dans `public/photos/noa/` sous le nom
-`ChatGPT Image 5 sept. 2026 (1..10).png`. Ils sont sortis du dossier
-public — donc **le site ne les sert pas** — le temps d'une réponse.
+Six des dix fichiers livrés sont partis dans `public/photos/noa/` et
+sont en ligne sur la page Le lieu.
 
-## Pourquoi
+Ces quatre-là restent ici parce qu'ils montrent une boisson ou une
+assiette, et que Le lieu ne doit en montrer aucune :
 
-Le nom des fichiers est celui que donne ChatGPT à une image qu'il
-**génère**. Les dix font exactement 977 × 1610, taille identique
-typique d'un même lot de génération.
+| Fichier | Ce qu'on y voit | Où il irait bien |
+|---|---|---|
+| `…(3).png` | Le canapé, avec un latte sur la table basse | Accueil, ou Notre histoire |
+| `…(8).png` | Le comptoir et la vitrine à pâtisseries | Notre histoire |
+| `…(9).png` | Un latte en cours de service au pichet | La carte |
+| `…(10).png` | Une assiette de petit-déjeuner | La carte, ou Les favoris |
 
-En les comparant aux photographies vérifiées de NOA :
+Dites-moi lesquelles vous voulez et où, je les place.
 
-- le logo des deux tasses sur la vitrine n'a pas le même dessin que
-  celui relevé sur la vraie vitrine ;
-- le comptoir n'a ni les mêmes suspensions ni la même implantation
-  que sur `counter.jpg` ;
-- l'assiette du petit-déjeuner n'est pas celle de `breakfast.jpg`.
+## Définition
 
-Ce sont des images d'un café **qui ressemble** à NOA, pas de NOA.
+Les fichiers font 977 px de large. C'est assez pour un emplacement de
+demi-colonne, pas pour une image qui court d'un bord à l'autre. Les
+six déjà en ligne ont été montées à 1400 px au ré-échantillonnage
+Lanczos, comme les autres.
 
-## Ce que ça change
-
-Le cahier des charges de départ était explicite : pas d'images
-générées, pas de banque d'images, l'objectif étant que quelqu'un qui a
-poussé la porte reconnaisse le lieu. Publier ces images sur le site
-d'un établissement réel montrerait aux clients des salles qui
-n'existent pas telles quelles.
-
-## Deux cas
-
-1. **Ce sont bien des images générées.** Alors elles ne devraient pas
-   illustrer le lieu. Elles peuvent servir de repères d'intention pour
-   l'aménagement, dans ce dossier, sans être publiées.
-
-2. **Ce sont de vraies photographies du nouveau local**, passées par
-   ChatGPT pour un recadrage ou un agrandissement. Dites-le-moi et je
-   les intègre immédiatement à la page Le lieu.
-
-Dans les deux cas, la réponse tient en une phrase et je m'en occupe.
+Si vous avez les fichiers d'origine, avant leur passage par ChatGPT,
+ils seront plus définis — envoyez-les et je remplace.
