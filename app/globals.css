@@ -272,8 +272,9 @@ sup { font-size: .58em; vertical-align: super; }
    on green. */
 .dd-oak .dd-line { stroke: var(--oak); opacity: .34; }
 .dd-oak.dd-quiet .dd-line { opacity: .2; }
-.dd-oak .dd-mark { filter: brightness(0) saturate(1) invert(62%) sepia(28%) saturate(560%) hue-rotate(354deg) brightness(92%); }
-.dd-oak.dd-quiet .dd-mark { opacity: .14 !important; }
+/* Le logo recoloré par filtre sortait terne et décalé — une ombre
+   plutôt qu'un dessin. En teinte bois, on ne garde que le trait. */
+.dd-oak .dd-mark { display: none; }
 
 .dd-line {
   fill: none;
@@ -417,7 +418,7 @@ sup { font-size: .58em; vertical-align: super; }
 }
 .aside p { position: relative; }
 .aside p {
-  font-size: clamp(30px, 6.4vw, 104px);
+  font-size: clamp(26px, 4.6vw, 68px);
   font-weight: 900;
   letter-spacing: -.045em;
   line-height: .95;
@@ -532,14 +533,18 @@ sup { font-size: .58em; vertical-align: super; }
   gap: clamp(14px, 2.4vw, 34px);
   align-items: start;
 }
+.menu-side { padding-top: 17px; display: grid; gap: 14px; }
 .menu-h {
   font-size: clamp(13px, 1.1vw, 15px);
   font-weight: 900;
   letter-spacing: .13em;
   text-transform: uppercase;
-  padding-top: 17px;
   opacity: .78;
 }
+/* La rangée de grandes photos ne tenait pas debout : quatre carrés
+   alignés sous la liste, sans rapport avec elle. Une seule vignette
+   par rubrique, posée dans la marge que l'intitulé laissait vide. */
+.menu-thumb { display: block; width: 100%; max-width: 132px; }
 .menu-cat li {
   display: flex;
   align-items: baseline;
@@ -676,9 +681,9 @@ sup { font-size: .58em; vertical-align: super; }
 
 .metro { position: relative; overflow: hidden; padding: var(--band) var(--pad); }
 .metro > *:not(.dd) { position: relative; }
-.metro-t { opacity: .5; margin-bottom: clamp(18px, 2.4vw, 32px); }
+.metro-t { opacity: .5; margin: 0 auto clamp(18px, 2.4vw, 32px); max-width: 860px; }
 
-.metro-list { display: grid; max-width: 900px; }
+.metro-list { display: grid; max-width: 860px; margin: 0 auto; }
 .metro-list li {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
@@ -717,7 +722,7 @@ sup { font-size: .58em; vertical-align: super; }
 }
 .metro-list li.near .metro-walk { color: var(--green); opacity: 1; }
 
-.metro-bus { margin-top: clamp(30px, 4vw, 54px); }
+.metro-bus { margin: clamp(30px, 4vw, 54px) auto 0; max-width: 860px; }
 .metro-bus .lbl { opacity: .5; margin-bottom: 14px; }
 .metro-bus ul { display: flex; gap: clamp(18px, 3vw, 40px); flex-wrap: wrap; }
 .metro-bus li { display: flex; align-items: center; gap: 10px; font-size: 15px; }
@@ -1204,8 +1209,9 @@ sup { font-size: .58em; vertical-align: super; }
   .favs-head .fit { width: 78%; }
   .favs-row { grid-template-columns: repeat(2, 1fr); gap: 20px 16px; }
   .fav-drop { margin-top: 0; }
-  .menu-cat { grid-template-columns: 1fr; gap: 6px; }
-  .menu-h { padding-top: 0; }
+  .menu-cat { grid-template-columns: 1fr; gap: 10px; }
+  .menu-side { padding-top: 0; grid-template-columns: 1fr auto; align-items: center; }
+  .menu-thumb { max-width: 72px; }
   .hrs-set li { grid-template-columns: 1fr auto; gap: 6px 14px; }
   .hrs-h { grid-column: 1; }
   .hrs-now { grid-row: 1; grid-column: 2; }
@@ -1222,7 +1228,6 @@ sup { font-size: .58em; vertical-align: super; }
   .venir-shot { margin: 0 calc(var(--pad) * -1); }
   .soc { grid-template-columns: 1fr; gap: 30px; }
   .soc-draw { justify-items: start; }
-  .menu-shots { grid-template-columns: repeat(2, 1fr); }
   .open-grid { grid-template-columns: 1fr; }
   .metro-list li { grid-template-columns: auto minmax(0, 1fr); }
   .metro-walk { grid-column: 2; }

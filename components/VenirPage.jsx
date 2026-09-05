@@ -38,7 +38,7 @@ export default function VenirPage() {
     <div className="page venir">
       <section className="venir-top">
         <Reveal kind="clip" className="venir-shot">
-          <Photo photo={P.devanture} ratio="4 / 5" sizes="(max-width: 900px) 100vw, 44vw" priority />
+          <Photo photo={P.facade} ratio="4 / 5" sizes="(max-width: 900px) 100vw, 44vw" priority />
         </Reveal>
 
         <div className="venir-id">

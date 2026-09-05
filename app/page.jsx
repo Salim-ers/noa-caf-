@@ -6,7 +6,6 @@ import Favoris from '@/components/Favoris';
 import Marquee from '@/components/Marquee';
 import Reviews from '@/components/Reviews';
 import Social from '@/components/Social';
-import Doodles from '@/components/Doodles';
 import { Bean } from '@/components/Glyph';
 import { P } from '@/lib/data';
 
@@ -36,7 +35,6 @@ export default function Home() {
       <Marquee />
 
       <section className="aside">
-        <Doodles behind tone="oak" />
         <Reveal kind="flash">
           <p>
             Petit, et c’est voulu.

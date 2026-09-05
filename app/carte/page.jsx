@@ -42,7 +42,18 @@ export default function Carte() {
               className={`menu-cat${cat.accent === 'blue' ? ' menu-blue' : cat.accent ? ' menu-sun' : ''}`}
               key={cat.id}
             >
-              <h2 className="menu-h">{cat.label}</h2>
+              <div className="menu-side">
+                <h2 className="menu-h">{cat.label}</h2>
+                {cat.shot && P[cat.shot] && (
+                  <Reveal kind="clip" className="menu-thumb">
+                    <Photo
+                      photo={P[cat.shot]}
+                      ratio="1 / 1"
+                      sizes="(max-width: 800px) 30vw, 132px"
+                    />
+                  </Reveal>
+                )}
+              </div>
               <ul>
                 {cat.items.map((it, i) => (
                   <Reveal as="li" key={it.n} delay={i * 0.03}>
@@ -57,16 +68,6 @@ export default function Carte() {
               </ul>
             </section>
           ))}
-
-          {/* quelques vignettes, pour que la liste ne soit pas
-              qu'une liste */}
-          <div className="menu-shots">
-            {[P.iced, P.matchaBrownie, P.cakeCafe, P.case].map((ph, i) => (
-              <Reveal key={ph.src} kind="clip" delay={i * 0.05}>
-                <Photo photo={ph} ratio="1 / 1" sizes="(max-width: 800px) 50vw, 22vw" />
-              </Reveal>
-            ))}
-          </div>
 
           <p className="menu-notes">
             {MENU_NOTES.map((n) => (
