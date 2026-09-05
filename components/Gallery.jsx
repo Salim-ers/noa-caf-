@@ -2,13 +2,16 @@ import Photo from './Photo';
 import Reveal from './Reveal';
 import { P } from '@/lib/data';
 
-/* Ordered, not scattered. A wide plate, then a matched pair, then a
-   wide plate, then a triptych — four beats you can feel, instead of
-   photographs dropped at odd offsets down the page. Every row lines
-   up on the same grid and the images stay big. */
+/* Ordonné, pas éparpillé. Un grand plan, puis une paire, puis un
+   triptyque — trois temps qu'on sent, au lieu de photographies
+   lâchées à des décalages arbitraires. Toutes les lignes tombent sur
+   la même grille et les images restent grandes.
+
+   Rien que le lieu ici : la nourriture a ses propres pages, et
+   aucune photo ne sert deux fois sur la page. */
 
 const ROWS = [
-  { k: 'wide', items: [{ photo: P.heroWide, sizes: '100vw' }] },
+  { k: 'wide', items: [{ photo: P.facade, ratio: '16 / 9', sizes: '100vw' }] },
   {
     k: 'pair',
     items: [
@@ -16,13 +19,12 @@ const ROWS = [
       { photo: P.interior, ratio: '4 / 5', sizes: '(max-width: 800px) 100vw, 50vw' },
     ],
   },
-  { k: 'wide', items: [{ photo: P.latteWide, sizes: '100vw' }] },
   {
     k: 'trio',
     items: [
+      { photo: P.window, ratio: '1 / 1', sizes: '(max-width: 800px) 100vw, 33vw' },
+      { photo: P.case, ratio: '1 / 1', sizes: '(max-width: 800px) 100vw, 33vw' },
       { photo: P.terrace, ratio: '1 / 1', sizes: '(max-width: 800px) 100vw, 33vw' },
-      { photo: P.matcha, ratio: '1 / 1', sizes: '(max-width: 800px) 100vw, 33vw' },
-      { photo: P.coffee, ratio: '1 / 1', sizes: '(max-width: 800px) 100vw, 33vw' },
     ],
   },
 ];

@@ -34,7 +34,7 @@ export default function Histoire() {
         </Reveal>
 
         <Reveal kind="clip" className="story-shot-a">
-          <Photo photo={P.counter} ratio="4 / 5" sizes="(max-width: 900px) 100vw, 44vw" />
+          <Photo photo={P.brunch} ratio="4 / 5" sizes="(max-width: 900px) 100vw, 44vw" />
         </Reveal>
 
         <div className="story-text">
@@ -63,7 +63,7 @@ export default function Histoire() {
         </div>
 
         <Reveal kind="clip" className="story-shot-b">
-          <Photo photo={P.case} ratio="1 / 1" sizes="(max-width: 900px) 100vw, 40vw" />
+          <Photo photo={P.cakeLatte} ratio="1 / 1" sizes="(max-width: 900px) 100vw, 40vw" />
         </Reveal>
 
         <div className="story-text story-text-b">
@@ -90,7 +90,7 @@ export default function Histoire() {
       </section>
 
       <Reveal kind="clip" className="bleed">
-        <Photo photo={P.carrotCakeWide} sizes="100vw" />
+        <Photo photo={P.coffeeWide} sizes="100vw" />
       </Reveal>
     </div>
   );

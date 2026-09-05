@@ -574,6 +574,34 @@ sup { font-size: .58em; vertical-align: super; }
   opacity: .5;
 }
 
+/* ── le local d'a cote ────────────────── */
+
+.soon {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 80px);
+  align-items: center;
+  padding: var(--band) var(--pad);
+  background: var(--cream);
+}
+.soon-shot { display: block; }
+.soon-txt .lbl { opacity: .5; }
+.soon-txt h2 {
+  margin-top: 16px;
+  font-size: clamp(28px, 4vw, 62px);
+  font-weight: 900;
+  letter-spacing: -.045em;
+  line-height: .98;
+  text-transform: uppercase;
+}
+.soon-p {
+  margin-top: clamp(16px, 2vw, 26px);
+  font-size: clamp(16px, 1.45vw, 21px);
+  line-height: 1.55;
+  max-width: 34ch;
+  opacity: .74;
+}
+
 /* ── histoire ────────────────────────── */
 
 .story {
@@ -1036,6 +1064,8 @@ sup { font-size: .58em; vertical-align: super; }
   .story-shot-a, .story-shot-b { margin: 0 calc(var(--pad) * -1); }
 
   .venir-access dl { grid-template-columns: 1fr; }
+  .soon { grid-template-columns: 1fr; gap: 26px; }
+  .soon-shot { margin: 0 calc(var(--pad) * -1); }
 
   /* seven blocks do not fit across a phone, so they wrap to two rows */
   .hrs-days { grid-template-columns: repeat(4, 1fr); }
