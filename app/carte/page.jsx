@@ -42,18 +42,7 @@ export default function Carte() {
               className={`menu-cat${cat.accent === 'blue' ? ' menu-blue' : cat.accent ? ' menu-sun' : ''}`}
               key={cat.id}
             >
-              <div className="menu-side">
-                <h2 className="menu-h">{cat.label}</h2>
-                {cat.shot && P[cat.shot] && (
-                  <Reveal kind="clip" className="menu-thumb">
-                    <Photo
-                      photo={P[cat.shot]}
-                      ratio="1 / 1"
-                      sizes="(max-width: 800px) 30vw, 132px"
-                    />
-                  </Reveal>
-                )}
-              </div>
+              <h2 className="menu-h">{cat.label}</h2>
               <ul>
                 {cat.items.map((it, i) => (
                   <Reveal as="li" key={it.n} delay={i * 0.03}>

@@ -265,16 +265,12 @@ sup { font-size: .58em; vertical-align: super; }
 /* Behind running text the same drawings have to step right back —
    at .88 they were reading as part of the menu. */
 .dd-quiet .dd-line { opacity: .17; }
-.dd-quiet .dd-mark { opacity: .12 !important; }
 
 /* The same drawings on a light ground: oak rather than white, and
    quieter still, because brown on cream carries further than white
    on green. */
 .dd-oak .dd-line { stroke: var(--oak); opacity: .34; }
 .dd-oak.dd-quiet .dd-line { opacity: .2; }
-/* Le logo recoloré par filtre sortait terne et décalé — une ombre
-   plutôt qu'un dessin. En teinte bois, on ne garde que le trait. */
-.dd-oak .dd-mark { display: none; }
 
 .dd-line {
   fill: none;
@@ -358,7 +354,8 @@ sup { font-size: .58em; vertical-align: super; }
 
 /* ── les favoris ──────────────────────── */
 
-.favs { padding: var(--band) var(--pad); }
+.favs { position: relative; overflow: hidden; padding: var(--band) var(--pad); }
+.favs > *:not(.dd) { position: relative; }
 .favs-head {
   display: flex;
   align-items: flex-end;
@@ -533,18 +530,15 @@ sup { font-size: .58em; vertical-align: super; }
   gap: clamp(14px, 2.4vw, 34px);
   align-items: start;
 }
-.menu-side { padding-top: 17px; display: grid; gap: 14px; }
 .menu-h {
+  padding-top: 17px;
   font-size: clamp(13px, 1.1vw, 15px);
   font-weight: 900;
   letter-spacing: .13em;
   text-transform: uppercase;
   opacity: .78;
 }
-/* La rangée de grandes photos ne tenait pas debout : quatre carrés
-   alignés sous la liste, sans rapport avec elle. Une seule vignette
-   par rubrique, posée dans la marge que l'intitulé laissait vide. */
-.menu-thumb { display: block; width: 100%; max-width: 132px; }
+
 .menu-cat li {
   display: flex;
   align-items: baseline;
@@ -1210,8 +1204,7 @@ sup { font-size: .58em; vertical-align: super; }
   .favs-row { grid-template-columns: repeat(2, 1fr); gap: 20px 16px; }
   .fav-drop { margin-top: 0; }
   .menu-cat { grid-template-columns: 1fr; gap: 10px; }
-  .menu-side { padding-top: 0; grid-template-columns: 1fr auto; align-items: center; }
-  .menu-thumb { max-width: 72px; }
+  .menu-h { padding-top: 0; }
   .hrs-set li { grid-template-columns: 1fr auto; gap: 6px 14px; }
   .hrs-h { grid-column: 1; }
   .hrs-now { grid-row: 1; grid-column: 2; }

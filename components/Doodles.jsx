@@ -121,12 +121,6 @@ const PIECES = [
   { m: 'spoon', x: 68, y: 77, s: 8, r: -28 },
 ];
 
-/* the real mark off the window, twice */
-const MARKS = [
-  { x: 18, y: 24, s: 15, r: -11, o: 0.5, sm: true },
-  { x: 78, y: 82, s: 11, r: 9, o: 0.44 },
-];
-
 export default function Doodles({ behind = false, tone = 'light' }) {
   const root = useRef(null);
 
@@ -199,22 +193,6 @@ export default function Doodles({ behind = false, tone = 'light' }) {
         </svg>
       ))}
 
-      {MARKS.map((m, i) => (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          key={`m${i}`}
-          className={`dd-i dd-mark${m.sm ? ' dd-sm' : ''}`}
-          src="/brand/noa-mark.png"
-          alt=""
-          style={{
-            left: `${m.x}%`,
-            top: `${m.y}%`,
-            width: `${m.s}vmin`,
-            rotate: `${m.r}deg`,
-            opacity: m.o,
-          }}
-        />
-      ))}
     </div>
   );
 }
