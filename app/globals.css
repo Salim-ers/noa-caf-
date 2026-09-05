@@ -614,36 +614,49 @@ sup { font-size: .58em; vertical-align: super; }
 
 /* ── histoire ────────────────────────── */
 
+/* La version precedente posait deux photos et deux blocs de texte sur
+   une grille de douze colonnes, avec des marges hautes : il restait de
+   grandes zones vides entre les deux. Ici les deux rangees sont
+   serrees, le texte coule en continu a cote de l'image, et les
+   dessins occupent ce qui reste. */
 .story {
+  position: relative;
+  overflow: hidden;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: clamp(20px, 3vw, 44px);
+  gap: clamp(30px, 4.5vw, 74px);
   padding: 0 var(--pad) var(--band);
-  align-items: start;
 }
-.story-lede { grid-column: 1 / 13; margin-bottom: clamp(20px, 3vw, 44px); }
-.story-lede p {
-  font-size: clamp(24px, 3.6vw, 54px);
+.story > *:not(.dd) { position: relative; }
+
+.story-top,
+.story-bot {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  gap: clamp(24px, 4vw, 62px);
+  align-items: center;
+}
+/* la seconde rangee inverse l'ordre, texte a gauche */
+.story-bot { grid-template-columns: minmax(0, 1.14fr) minmax(0, 0.86fr); }
+
+.story-portrait,
+.story-shot { display: block; }
+
+.story-lede {
+  font-size: clamp(24px, 3.2vw, 46px);
   font-weight: 900;
   letter-spacing: -.04em;
   line-height: 1.02;
   text-transform: uppercase;
+  margin-bottom: .7em;
 }
-.story-shot-a { grid-column: 1 / 6; grid-row: 2; }
-.story-text { grid-column: 7 / 13; grid-row: 2; padding-top: clamp(4px, 2vw, 34px); }
-.story-shot-b { grid-column: 8 / 13; grid-row: 3; margin-top: clamp(28px, 5vw, 84px); }
-.story-text-b {
-  grid-column: 1 / 7;
-  grid-row: 3;
-  margin-top: clamp(28px, 5vw, 84px);
-  padding-top: clamp(4px, 2vw, 34px);
+.story-intro p:not(.story-lede),
+.story-more p {
+  font-size: clamp(16px, 1.4vw, 20px);
+  line-height: 1.6;
+  max-width: 48ch;
 }
-.story-text p {
-  font-size: clamp(16px, 1.45vw, 21px);
-  line-height: 1.62;
-  max-width: 46ch;
-}
-.story-text > div + div { margin-top: 1.1em; }
+.story-intro > div + div,
+.story-more > div + div { margin-top: 1em; }
 
 /* ── pages legales ──────────────────── */
 
@@ -991,10 +1004,10 @@ sup { font-size: .58em; vertical-align: super; }
   .revs { grid-template-columns: 1fr; gap: 28px; }
   .revs-q { grid-template-columns: repeat(2, 1fr); }
 
-  .story-shot-a { grid-column: 1 / 7; grid-row: auto; }
-  .story-text { grid-column: 1 / 13; grid-row: auto; padding-top: 0; margin-top: 22px; }
-  .story-shot-b { grid-column: 6 / 13; grid-row: auto; }
-  .story-text-b { grid-column: 1 / 13; grid-row: auto; padding-top: 0; margin-top: 22px; }
+  .story-top,
+  .story-bot { grid-template-columns: 1fr; gap: 26px; }
+  .story-bot .story-more { order: 2; }
+  .story-bot .story-shot { order: 1; }
 
   .venir-access dl { grid-template-columns: repeat(2, 1fr); }
 
@@ -1070,8 +1083,7 @@ sup { font-size: .58em; vertical-align: super; }
 
   .menu { grid-template-columns: 1fr; gap: 34px; }
 
-  .story-shot-a, .story-shot-b, .story-text, .story-text-b { grid-column: 1 / 13; }
-  .story-shot-a, .story-shot-b { margin: 0 calc(var(--pad) * -1); }
+  .story-portrait, .story-shot { margin: 0 calc(var(--pad) * -1); }
 
   .venir-access dl { grid-template-columns: 1fr; }
   .soon { grid-template-columns: 1fr; gap: 26px; }

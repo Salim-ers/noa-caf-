@@ -1,20 +1,21 @@
 import Fit from '@/components/Fit';
 import Photo from '@/components/Photo';
 import Reveal from '@/components/Reveal';
+import Doodles from '@/components/Doodles';
 import { Bean } from '@/components/Glyph';
 import { P } from '@/lib/data';
 
 export const metadata = {
   title: 'Notre histoire',
   description:
-    'NOA, café indépendant du 19e à Paris, ouvert en 2024 par Noémie Gerardin après quatre ans dans le marketing. Pâtisserie faite sur place, chiens bienvenus.',
+    'NOA, café indépendant du 19e à Paris, ouvert en 2024 par Noémie. Pâtisserie faite sur place, chiens bienvenus.',
   alternates: { canonical: '/histoire' },
 };
 
-/* Rien n'est inventé ici. Le récit tient à ce qui est public et
-   attribuable : le registre des sociétés pour la date et la forme,
-   la presse et le compte TikTok de Noémie pour le reste. Aucune
-   citation ne lui est prêtée — elle raconte déjà tout elle-même. */
+/* Le récit reste sur le café, pas sur la personne : pas de nom
+   d'entreprise, pas de date d'immatriculation, rien sur ses
+   finances. Ce qui est raconté ici, Noémie le raconte déjà
+   elle-même, et aucune citation ne lui est prêtée. */
 
 export default function Histoire() {
   return (
@@ -24,67 +25,62 @@ export default function Histoire() {
       </section>
 
       <section className="story">
-        <Reveal className="story-lede">
-          <p>
-            NOA a ouvert en 2024, rue Mélingue.
-            <br />
-            Avant, Noémie faisait du marketing.
-            <Bean className="bean-inline" />
-          </p>
-        </Reveal>
+        <Doodles behind tone="oak" />
 
-        <Reveal kind="clip" className="story-shot-a">
-          <Photo photo={P.counter} ratio="4 / 5" sizes="(max-width: 900px) 100vw, 44vw" />
-        </Reveal>
+        <div className="story-top">
+          <Reveal kind="clip" className="story-portrait">
+            <Photo photo={P.noemie} ratio="4 / 5" sizes="(max-width: 900px) 100vw, 40vw" />
+          </Reveal>
 
-        <div className="story-text">
-          <Reveal>
-            <p>
-              Noémie Gerardin a passé quatre ans chez Tiptoe, dans le marketing. Elle
-              en est partie pour ouvrir un café. Pas en parallèle, pas en test : elle
-              y a mis ses économies, sans plan B.
-            </p>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <p>
-              La société NOA est immatriculée le 15 juin 2024. Entre les deux, il y a
-              eu les travaux, les essais de recettes, les ratés. Elle a tout filmé et
-              tout publié sur TikTok, y compris ce qui n’allait pas.
-            </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p>
-              C’est ce qui explique la salle des premiers jours. Les gens qui
-              poussaient la porte avaient déjà vu le chantier : ils ne découvraient
-              pas une adresse, ils venaient voir en vrai un endroit qu’ils suivaient
-              depuis des mois.
-            </p>
-          </Reveal>
+          <div className="story-intro">
+            <Reveal>
+              <p className="story-lede">
+                NOA a ouvert en 2024, rue Mélingue.
+                <Bean className="bean-inline" />
+              </p>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <p>
+                Avant, Noémie travaillait dans le marketing. Elle en est partie
+                pour ouvrir un café — celui-ci.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p>
+                Elle a tout montré au fil des mois : les travaux, les essais de
+                recettes, ce qui ratait. Les gens ont suivi le chantier bien
+                avant de pousser la porte.
+              </p>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <p>
+                C’est pour ça que la salle des premiers jours n’était pas vide.
+                Ceux qui entraient ne découvraient pas une adresse : ils venaient
+                voir en vrai un endroit qu’ils suivaient depuis longtemps.
+              </p>
+            </Reveal>
+          </div>
         </div>
 
-        <Reveal kind="clip" className="story-shot-b">
-          <Photo photo={P.case} ratio="1 / 1" sizes="(max-width: 900px) 100vw, 40vw" />
-        </Reveal>
+        <div className="story-bot">
+          <div className="story-more">
+            <Reveal>
+              <p>
+                Une salle, du bois clair, quelques tables rondes. La pâtisserie
+                est faite sur place et change avec les jours — ce qu’il y a est
+                écrit à la main sur la vitrine.
+              </p>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <p>
+                Les chiens sont les bienvenus. Le week-end, les ordinateurs
+                restent fermés : on vient pour s’asseoir et parler.
+              </p>
+            </Reveal>
+          </div>
 
-        <div className="story-text story-text-b">
-          <Reveal>
-            <p>
-              Le lieu tient en une salle. Murs clairs, bois blond, quelques tables
-              rondes, des lanternes en papier. C’est petit, et c’est voulu.
-            </p>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <p>
-              La pâtisserie est faite sur place et change avec les jours : carrot
-              cake, brownie matcha, cookie, banana bread. Ce qu’il y a est écrit à la
-              main sur la vitrine.
-            </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p>
-              Les chiens sont les bienvenus. Le week-end, les ordinateurs restent
-              fermés : on vient pour s’asseoir et parler.
-            </p>
+          <Reveal kind="clip" className="story-shot">
+            <Photo photo={P.counter} ratio="4 / 5" sizes="(max-width: 900px) 100vw, 42vw" />
           </Reveal>
         </div>
       </section>
