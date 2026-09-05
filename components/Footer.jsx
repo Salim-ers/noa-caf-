@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import Logo from './Logo';
 import Doodles from './Doodles';
 import Hours from './Hours';
+import { IgMark, TtMark } from './Glyph';
 import MapFrame from './MapFrame';
 import { NAV, LEGAL } from '@/lib/nav';
 import { SITE } from '@/lib/data';
@@ -55,8 +56,14 @@ export default function Footer() {
         {NAV.map(([href, label]) => (
           <Link key={href} href={href}>{label}</Link>
         ))}
-        <a href={SITE.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href={SITE.tiktok} target="_blank" rel="noopener noreferrer">TikTok</a>
+        <a className="ft-net" href={SITE.instagram} target="_blank" rel="noopener noreferrer">
+          <IgMark />
+          <span>Instagram</span>
+        </a>
+        <a className="ft-net" href={SITE.tiktok} target="_blank" rel="noopener noreferrer">
+          <TtMark />
+          <span>TikTok</span>
+        </a>
       </nav>
 
       <Logo variant="word" className="ft-mark" title="NOA — Café & Friends" />

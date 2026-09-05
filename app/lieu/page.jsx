@@ -1,28 +1,35 @@
 import Fit from '@/components/Fit';
 import Photo from '@/components/Photo';
 import Reveal from '@/components/Reveal';
-import Gallery from '@/components/Gallery';
+import Doodles from '@/components/Doodles';
 import { Bean } from '@/components/Glyph';
 import { P } from '@/lib/data';
 
 export const metadata = {
   title: 'Le lieu',
   description:
-    'La salle de NOA, rue Mélingue dans le 19e : murs clairs, bois, une salle courte et un store vert. Et le local voisin, qui finit ses travaux. Chiens bienvenus.',
+    'La salle de NOA, rue Mélingue dans le 19e : murs clairs, bois, une salle courte. Et le salon d’à côté, désormais ouvert. Chiens bienvenus.',
   alternates: { canonical: '/lieu' },
 };
 
-/* Aucune assiette et aucune tasse sur cette page : ni dans la galerie
-   de la salle, ni dans celle du nouveau local. Les photographies où
-   une boisson ou un plat apparaît sont gardées pour La carte et
-   Notre histoire. */
+/* Aucune assiette ni tasse en gros plan sur cette page : elle parle
+   du lieu, pas de la carte. */
 
-/* salleTables est deja dans la galerie du haut : c'est la salle
-   d'origine, pas le local voisin. */
+const SALLE = [
+  { photo: P.interior, ratio: '4 / 5' },
+  { photo: P.counterTall, ratio: '4 / 5' },
+];
+
 const SALON = [
   { photo: P.salonVue, ratio: '4 / 5' },
   { photo: P.salonCadre, ratio: '4 / 5' },
-  { photo: P.vitrineLogo, ratio: '4 / 5' },
+  { photo: P.salonLanterne, ratio: '4 / 5' },
+];
+
+const RUE = [
+  { photo: P.devanture, ratio: '1 / 1' },
+  { photo: P.salleTables, ratio: '1 / 1' },
+  { photo: P.vitrineLogo, ratio: '1 / 1' },
 ];
 
 export default function Lieu() {
@@ -33,56 +40,74 @@ export default function Lieu() {
       </section>
 
       <section className="aside" style={{ paddingTop: 0 }}>
+        <Doodles behind tone="oak" />
         <p className="lede">
           Murs clairs, bois, une salle courte.
           <br />
-          Petit, et c’est voulu.
+          Et maintenant, un salon à côté.
         </p>
       </section>
 
-      <Gallery />
-
-      {/* Le local d'à côté. La formulation dit que les travaux se
-          terminent, sans annoncer de date : NOA n'en a pas donné. */}
-      <section className="soon" aria-labelledby="soon-t">
-        <Reveal kind="clip" className="soon-shot">
-          <Photo photo={P.salonLanterne} ratio="4 / 5" sizes="(max-width: 900px) 100vw, 46vw" />
-        </Reveal>
-
-        <div className="soon-txt">
-          <p className="lbl" id="soon-t">Bientôt</p>
-          <Reveal>
-            <h2>
-              À gauche,
-              <br />
-              le local voisin
-              <br />
-              finit ses travaux.
-              <Bean className="bean-inline" />
-            </h2>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <p className="soon-p">
-              Un canapé, une table basse, des livres. De quoi rester plus
-              longtemps que le temps d’un café.
-            </p>
+      <div className="gal">
+        <div className="gal-wide">
+          <Reveal kind="clip">
+            <Photo photo={P.interiorWide} sizes="100vw" />
           </Reveal>
         </div>
-      </section>
 
-      <div className="salon">
-        <Reveal kind="clip" className="salon-lead">
-          <Photo photo={P.salonLarge} ratio="16 / 10" sizes="100vw" />
-        </Reveal>
+        <div className="gal-pair">
+          {SALLE.map((it, i) => (
+            <Reveal key={it.photo.src} kind="clip" delay={i * 0.06}>
+              <Photo photo={it.photo} ratio={it.ratio} sizes="(max-width: 800px) 100vw, 50vw" />
+            </Reveal>
+          ))}
+        </div>
 
-        <div className="salon-grid">
-          {SALON.map((it, i) => (
-            <Reveal key={it.photo.src} kind="clip" delay={(i % 2) * 0.06}>
-              <Photo photo={it.photo} ratio={it.ratio} sizes="(max-width: 800px) 50vw, 33vw" />
+        <div className="gal-trio">
+          {RUE.map((it, i) => (
+            <Reveal key={it.photo.src} kind="clip" delay={i * 0.06}>
+              <Photo photo={it.photo} ratio={it.ratio} sizes="(max-width: 800px) 100vw, 33vw" />
             </Reveal>
           ))}
         </div>
       </div>
+
+      {/* Le local voisin est ouvert. */}
+      <section className="open" aria-labelledby="open-t">
+        <Doodles behind tone="oak" />
+
+        <div className="open-say">
+          <p className="lbl" id="open-t">C’est ouvert</p>
+          <Reveal>
+            <h2>
+              Heureux de vous annoncer
+              <br />
+              que le salon d’à côté
+              <br />
+              est ouvert.
+              <Bean className="bean-inline" />
+            </h2>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <p className="open-p">
+              Un canapé, une table basse, des livres et une grande lanterne. De
+              quoi rester plus longtemps que le temps d’un café.
+            </p>
+          </Reveal>
+        </div>
+
+        <Reveal kind="clip" className="open-shot">
+          <Photo photo={P.salonLarge} sizes="100vw" />
+        </Reveal>
+
+        <div className="open-grid">
+          {SALON.map((it, i) => (
+            <Reveal key={it.photo.src} kind="clip" delay={i * 0.06}>
+              <Photo photo={it.photo} ratio={it.ratio} sizes="(max-width: 800px) 100vw, 33vw" />
+            </Reveal>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

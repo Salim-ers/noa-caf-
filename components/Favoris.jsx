@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Photo from './Photo';
 import Reveal from './Reveal';
 import Fit from './Fit';
+import Doodles from './Doodles';
 import { withO, Bean } from './Glyph';
 import { FAVORIS } from '@/lib/data';
 
@@ -13,6 +14,7 @@ import { FAVORIS } from '@/lib/data';
 export default function Favoris() {
   return (
     <section className="favs band-green" aria-labelledby="favs-t">
+      <Doodles behind />
       <div className="favs-head">
         <Fit as="h2" id="favs-t" max={340}>Les favoris</Fit>
         <Bean className="favs-bean" />

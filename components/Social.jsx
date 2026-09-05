@@ -1,37 +1,43 @@
-import Photo from './Photo';
 import Reveal from './Reveal';
-import { withO } from './Glyph';
-import { SOCIAL, SITE } from '@/lib/data';
+import { Phone } from './Glyph';
+import { SOCIAL_LINKS } from '@/lib/data';
 
-/* NOA is already a picture feed before it is a website, so the
-   handle is set at display size and the photographs run edge to
-   edge under it. These are NOA's own pictures, not a mock-up of
-   their grid — no fake posts, no counts, no invented captions. */
+/* Plus de grille de vignettes. Le vrai flux Instagram demande un
+   jeton que seul NOA peut créer, et une grille figée d'images
+   choisies à la main se faisait passer pour un flux sans en être un.
+
+   Reste ce qui est honnête : où aller, et un téléphone dessiné dans
+   la même main que le reste du site. */
 
 export default function Social() {
   return (
     <section className="soc" aria-labelledby="soc-t">
-      <Reveal>
-        <h2 id="soc-t">
-          <a className="soc-h" href={SITE.instagram} target="_blank" rel="noopener noreferrer">
-            {withO(SITE.handle)}
-          </a>
-        </h2>
+      <Reveal className="soc-draw">
+        <Phone />
       </Reveal>
 
-      <div className="soc-grid">
-        {SOCIAL.map((photo, i) => (
-          <Reveal key={photo.src} kind="clip" delay={(i % 3) * 0.05}>
-            <Photo photo={photo} ratio="1 / 1" sizes="(max-width: 800px) 33vw, 16vw" />
-          </Reveal>
-        ))}
+      <div className="soc-txt">
+        <h2 className="lbl" id="soc-t">Sur les réseaux</h2>
+        <Reveal>
+          <p className="soc-lede">
+            Ce qui sort du four, ce qui change,
+            <br />
+            ce qui se passe dans la salle.
+          </p>
+        </Reveal>
+
+        <ul className="soc-links">
+          {SOCIAL_LINKS.map((l, i) => (
+            <Reveal as="li" key={l.label} delay={i * 0.06}>
+              <a href={l.href} target="_blank" rel="noopener noreferrer">
+                <span className="soc-net">{l.label}</span>
+                <span className="soc-handle">{l.handle}</span>
+                <span className="soc-go" aria-hidden="true">→</span>
+              </a>
+            </Reveal>
+          ))}
+        </ul>
       </div>
-
-      <Reveal className="soc-cta">
-        <a href={SITE.instagram} target="_blank" rel="noopener noreferrer">
-          Suivre NOA <span aria-hidden="true">→</span>
-        </a>
-      </Reveal>
     </section>
   );
 }

@@ -59,6 +59,13 @@ export default function Histoire() {
                 voir en vrai un endroit qu’ils suivaient depuis longtemps.
               </p>
             </Reveal>
+            <Reveal delay={0.2}>
+              <p>
+                Beaucoup sont revenus. On finit par connaître les prénoms, les
+                habitudes, le café que chacun prend. C’est une petite famille
+                plus qu’une clientèle.
+              </p>
+            </Reveal>
           </div>
         </div>
 
@@ -66,12 +73,20 @@ export default function Histoire() {
           <div className="story-more">
             <Reveal>
               <p>
-                Une salle, du bois clair, quelques tables rondes. La pâtisserie
-                est faite sur place et change avec les jours — ce qu’il y a est
-                écrit à la main sur la vitrine.
+                L’endroit a été pensé pour qu’on s’y pose : du bois clair, des
+                lanternes en papier, des tables rondes qu’on partage sans y
+                penser, un canapé dans le salon d’à côté. On y entre pour un
+                café, on y reste une heure.
               </p>
             </Reveal>
             <Reveal delay={0.05}>
+              <p>
+                La pâtisserie est faite sur place et change avec les jours — ce
+                qu’il y a est écrit à la main sur la vitrine. Rien n’est figé,
+                et c’est voulu.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
               <p>
                 Les chiens sont les bienvenus. Le week-end, les ordinateurs
                 restent fermés : on vient pour s’asseoir et parler.

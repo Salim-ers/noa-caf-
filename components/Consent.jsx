@@ -39,9 +39,9 @@ export default function Consent() {
       <div className="ck-txt">
         <p className="ck-h">Parlons cookies.</p>
         <p>
-          Les nôtres sortent du four, chocolat noir et fleur de sel, à 3,50 €.
-          Ceux dont on doit vous parler viennent de Google Maps et servent à
-          vous suivre. Tant que vous n’avez rien dit, le plan ne se charge pas.
+          Les nôtres sortent du four. Ceux-là viennent de Google Maps, se
+          digèrent beaucoup moins bien, et servent surtout à vous suivre. Tant
+          que vous n’avez rien dit, le plan ne se charge pas.
         </p>
         <p className="ck-more">
           <Link href="/cookies">Ce qu’ils font exactement</Link>

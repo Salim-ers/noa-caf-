@@ -151,13 +151,28 @@ export default function Doodles({ behind = false, tone = 'light' }) {
         delay: 0.3,
       });
 
-      /* a short vertical drift, well inside the margins so nothing
-         reaches an edge on its way past. No rotation here: each
-         piece already carries its own angle, and turning them on
-         top of that only made the field look knocked over. */
+      /* Une fois posés, les dessins ne s'arrêtent pas : chacun
+         respire sur place, avec sa propre durée et son propre
+         retard, pour qu'aucun mouvement ne soit synchrone avec le
+         voisin. L'amplitude reste faible — c'est une dérive, pas une
+         animation. */
+      items.forEach((el) => {
+        gsap.to(el, {
+          y: gsap.utils.random(-9, 9),
+          x: gsap.utils.random(-6, 6),
+          rotation: gsap.utils.random(-4, 4),
+          duration: gsap.utils.random(4.5, 8),
+          delay: gsap.utils.random(0, 2),
+          ease: 'sine.inOut',
+          repeat: -1,
+          yoyo: true,
+        });
+      });
+
+      /* et le tout glisse un peu plus vite que la page au défilement */
       items.forEach((el, i) => {
         gsap.to(el, {
-          yPercent: (i % 2 ? 1 : -1) * (14 + (i % 4) * 6),
+          yPercent: (i % 2 ? 1 : -1) * (12 + (i % 4) * 5),
           ease: 'none',
           scrollTrigger: { trigger: node, start: 'top top', end: 'bottom top', scrub: 0.8 },
         });

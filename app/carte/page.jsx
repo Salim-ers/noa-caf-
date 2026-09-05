@@ -2,6 +2,7 @@ import Fit from '@/components/Fit';
 import Photo from '@/components/Photo';
 import Reveal from '@/components/Reveal';
 import Doodles from '@/components/Doodles';
+import { Bean } from '@/components/Glyph';
 import { MENU, MENU_NOTES, P } from '@/lib/data';
 
 export const metadata = {
@@ -37,7 +38,10 @@ export default function Carte() {
 
         <div className="menu">
           {MENU.map((cat) => (
-            <section className={`menu-cat${cat.accent ? ' menu-sun' : ''}`} key={cat.id}>
+            <section
+              className={`menu-cat${cat.accent === 'blue' ? ' menu-blue' : cat.accent ? ' menu-sun' : ''}`}
+              key={cat.id}
+            >
               <h2 className="menu-h">{cat.label}</h2>
               <ul>
                 {cat.items.map((it, i) => (
@@ -53,6 +57,16 @@ export default function Carte() {
               </ul>
             </section>
           ))}
+
+          {/* quelques vignettes, pour que la liste ne soit pas
+              qu'une liste */}
+          <div className="menu-shots">
+            {[P.iced, P.matchaBrownie, P.cakeCafe, P.case].map((ph, i) => (
+              <Reveal key={ph.src} kind="clip" delay={i * 0.05}>
+                <Photo photo={ph} ratio="1 / 1" sizes="(max-width: 800px) 50vw, 22vw" />
+              </Reveal>
+            ))}
+          </div>
 
           <p className="menu-notes">
             {MENU_NOTES.map((n) => (

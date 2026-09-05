@@ -70,3 +70,50 @@ export function CookieDrawing({ className = '' }) {
     </svg>
   );
 }
+
+/* Un téléphone, dans la même main que le reste : trait unique, bouts
+   ronds, rien de rempli. À l'écran, les deux tasses de l'enseigne.
+   Sert à la section réseaux, où il n'y a plus de vignettes. */
+export function Phone({ className = '' }) {
+  return (
+    <svg className={`ph-draw ${className}`.trim()} viewBox="-90 -130 180 260" aria-hidden="true">
+      <g fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="-58" y="-112" width="116" height="224" rx="18" />
+        <path d="M-18 -100 L18 -100" />
+        <path d="M-10 100 L10 100" />
+        {/* les deux tasses, à l'écran */}
+        <path d="M-32 -6 C -40 -6, -42 4, -36 10 C -30 18, -14 20, -6 12 C 0 6, -2 -4, -10 -6 Z" />
+        <path d="M-42 0 C -50 -2, -50 8, -42 8" />
+        <path d="M8 -2 C 0 -2, -2 8, 4 14 C 10 22, 26 24, 34 16 C 40 10, 38 0, 30 -2 Z" />
+        <path d="M40 4 C 48 2, 48 12, 40 12" />
+        <path d="M-14 -22 C -10 -32, -2 -30, -4 -20" />
+        <path d="M6 -26 C 10 -36, 18 -34, 16 -24" />
+      </g>
+    </svg>
+  );
+}
+
+/* Les deux réseaux, dessinés plutôt qu'importés : un jeu d'icônes
+   tiers aurait amené une autre main dans la page. */
+export function IgMark({ className = '' }) {
+  return (
+    <svg className={`net ${className}`.trim()} viewBox="0 0 24 24" aria-hidden="true">
+      <g fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+        <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5" />
+        <circle cx="12" cy="12" r="4.2" />
+        <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
+      </g>
+    </svg>
+  );
+}
+
+export function TtMark({ className = '' }) {
+  return (
+    <svg className={`net ${className}`.trim()} viewBox="0 0 24 24" aria-hidden="true">
+      <g fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14.2 3.2 v10.6 a3.9 3.9 0 1 1 -3.9 -3.9" />
+        <path d="M14.2 3.2 c .5 2.6 2.2 4.2 4.8 4.4" />
+      </g>
+    </svg>
+  );
+}
