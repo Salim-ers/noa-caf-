@@ -5,55 +5,62 @@
 
 ## Statut : fournies par NOA
 
-Les 19 fichiers de `public/photos/noa/` viennent de **NOA**, remis
-directement pour ce site. Le blocage de licence qui pesait sur la
-version précédente est levé : plus aucune image tierce n'est utilisée.
+Toutes les photographies de `public/photos/noa/` viennent de NOA,
+remises directement pour ce site. Aucune image tierce n'est utilisée.
+Le blocage de licence qui pesait sur les premières versions est levé :
+les photographies de presse et de fiches d'annuaire qui servaient de
+repères au départ ont toutes été remplacées.
 
-Les fichiers d'origine étaient en 3840 px. Ils ont été ramenés à
-2400 px sur le grand côté, en JPEG qualité 88 progressif — la limite
-utile pour un écran. Le lot passe de 33 Mo à 9 Mo, sans perte visible.
-Les originaux 4K sont à conserver de votre côté, hors dépôt.
+## Ce qui leur a été fait
 
-## Ce qui a été fait à chaque fichier
+Rien qui change l'image : conversion en JPEG progressif qualité 88–90,
+et redimensionnement.
 
-Rien, sauf pour deux d'entre eux : la photo qui montrait le brownie
-matcha et le cookie côte à côte a été recadrée en deux carrés, un par
-produit, pour la section « Les favoris ».
+**Aucune photographie n'est agrandie au-delà de sa taille d'origine**
+pour remplir un emplacement — c'est l'emplacement qui s'adapte. Deux
+exceptions assumées, où le fichier livré était plus petit que la place
+qu'il occupe à l'écran :
 
-| Fichier livré | Devenu | Traitement |
-|---|---|---|
-| `CCC_4K` | `hero.jpg` | redimensionné |
-| `ddd_4K` | `facade.jpg` | redimensionné |
-| `DEV_4K` | `terrace.jpg` | redimensionné |
-| `XXX_4K` | `interior.jpg` | redimensionné |
-| `az_4K` | `window.jpg` | redimensionné |
-| `zzzzz_4K` | `counter.jpg` | redimensionné |
-| `zae_4K` | `case.jpg` | redimensionné |
-| `azdazdazdaz_4K` | `spread.jpg` | redimensionné |
-| `qsd_4K` | `brunch.jpg` | redimensionné |
-| `photo_4K` | `breakfast.jpg` | redimensionné |
-| `azdazdaz_4K` | `toast.jpg` | redimensionné |
-| `a_4K` | `matcha.jpg` | redimensionné |
-| `azdqsxcQS_4K` | `card.jpg` | redimensionné |
-| `unnamed_4K` | `latte.jpg` | redimensionné |
-| `unnamed(1)_4K` | `cake-latte.jpg` | redimensionné |
-| `azedaéed_4K` | `coffee.jpg` | redimensionné |
-| `AQQQ_4K` | `carrot-cake.jpg` | redimensionné |
-| `fff_4K` | `matcha-brownie.jpg` | recadré à gauche, carré |
-| `fff_4K` | `cookie.jpg` | recadré à droite, carré |
+| Fichier | Livré | Posé | Traitement |
+|---|---|---|---|
+| les sept `*-wide` du premier lot | 1 672 px | 2 400 px | Lanczos + masque flou léger |
+| `noemie` | 474 px | 1 000 px | idem |
+| `salon-*`, `vitrine-logo`, `salle-tables` | 977 px | 1 400 px | idem |
+| `lounge` | 1 024 px | 1 600 px | idem |
 
-## Ce que les photos ont appris sur la carte
+Le ré-échantillonnage n'invente aucun détail : il fait l'agrandissement
+proprement une bonne fois, avec un bon filtre, au lieu de le laisser
+bâcler par le navigateur à chaque affichage. **Un fichier d'origine plus
+défini restera toujours meilleur** — si NOA les retrouve, il suffit de
+les déposer sous le même nom.
 
-`case.jpg` montre la vitrine à pâtisseries, les produits et leurs prix
-écrits au feutre sur le verre. Deux produits n'étaient pas encore sur
-le site et y ont été ajoutés, **sans prix** :
+## Recadrages
 
-- **Chocolate cake**, noté « V/GF » sur la vitrine
-- **Banana bread**
+Deux fichiers ont été découpés :
 
-Les prix lisibles sur cette photo sont notés dans `lib/data.js`, en
-commentaire, **non publiés**. Ils attendent une confirmation : la photo
-n'est pas datée et un prix faux sur un site est un vrai problème.
+- la photographie qui montrait le brownie matcha et le cookie côte à
+  côte a donné deux carrés, un par produit ;
+- `noemie` et quelques vues du salon ont été recadrées au format de
+  leur emplacement.
+
+## À confirmer par NOA avant la mise en ligne
+
+Rien de tout cela n'est inventé, mais rien n'a été confirmé par NOA :
+
+- **Les prix**, relevés sur la carte imprimée. Ils changent.
+- **Les horaires** : lundi–vendredi 8h30–17h, samedi–dimanche 10h–18h.
+  Les sources publiques ne concordaient pas toutes.
+- **La note et le nombre d'avis** — 4,9 et 500+ — qui bougent.
+- **Les avis cités**, repris mot pour mot de Google et TikTok.
+- **Les mentions légales** : SIREN, SIRET, code APE et date viennent
+  du registre public ; le capital et le nom de la gérante ont été
+  communiqués.
+
+## En attente
+
+`photos-en-attente/` contient quatre fichiers non publiés : ils
+montrent une boisson ou une assiette, et la page Le lieu ne doit en
+montrer aucune. Le détail est dans le LISEZ-MOI du dossier.
 
 ## Marque
 
@@ -67,7 +74,5 @@ NOA**, le dessin des deux tasses de la vitrine, isolé par seuillage sur
 la luminance depuis une photographie de la vitrine. Le tracé n'a pas
 été redessiné.
 
-Les deux sont posés en `mask-image` ou en SVG, donc ils prennent
-`currentColor` : un seul fichier sert le blanc sur vert comme le vert
-sur crème. Si NOA fournit un SVG officiel, remplacez les fichiers et
+Si NOA fournit un SVG officiel, remplacez les fichiers et
 `components/Logo.jsx` continue de fonctionner tel quel.
