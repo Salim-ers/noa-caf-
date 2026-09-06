@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import Dock from '@/components/Dock';
 import Loader from '@/components/Loader';
 import Consent from '@/components/Consent';
-import { SITE, C } from '@/lib/data';
+import { SITE, C, IS_LIVE } from '@/lib/data';
 import './globals.css';
 
 /* One family, five weights. Outfit is a geometric sans with
@@ -36,7 +36,9 @@ export const metadata = {
     description:
       'Un coffee shop de quartier au 6 rue Mélingue. Café, matcha, pâtisserie maison.',
   },
-  robots: { index: true, follow: true },
+  /* meme regle que robots.txt : certains moteurs suivent la meta
+     et pas le fichier, ou l'inverse. */
+  robots: IS_LIVE ? { index: true, follow: true } : { index: false, follow: false },
 };
 
 export const viewport = { themeColor: C.green };

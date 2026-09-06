@@ -37,8 +37,17 @@ NEXT_PUBLIC_SITE_ORIGIN = https://le-vrai-domaine.fr
 
 Sur Vercel : **Settings → Environment Variables**, puis redéployer.
 
-Sans elle, le site fonctionne mais quatre choses pointent vers
-`noacafe.paris`, qui n'appartient pas à NOA :
+**Tant qu'elle n'est pas posée, le site se met tout seul hors des
+moteurs** : `robots.txt` interdit tout et chaque page porte
+`noindex, nofollow`. C'est voulu — une démo indexée entrerait en
+concurrence avec le vrai site le jour de la mise en ligne, sous une
+adresse qui n'est pas celle de NOA.
+
+Poser la variable rouvre tout d'un coup : robots, sitemap, canonical
+et JSON-LD suivent ensemble. **Ne pas oublier de redéployer après.**
+
+Sans elle, quatre choses pointeraient sinon vers `noacafe.paris`, qui
+n'appartient pas à NOA :
 
 - le `canonical` de chaque page ;
 - l'`og:url` et l'image de partage ;
