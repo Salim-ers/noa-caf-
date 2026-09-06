@@ -3,44 +3,58 @@
 **Ce fichier n'est pas publié.** Il vit à la racine du dépôt, pas dans
 `public/`, et n'apparaît nulle part sur le site.
 
-## Statut : à régler avant toute mise en ligne
+## Statut : à trier, pas forcément à refaire
 
-Les photographies de `public/photos/noa/` ont été **trouvées sur
-Google** — fiche de l'établissement, photos d'avis clients, articles.
-Elles n'ont pas été fournies par NOA et ne sont couvertes par aucune
-autorisation.
+Les photographies de `public/photos/noa/` ont été récupérées sur
+Google. Deux origines s'y mélangent, et elles n'ont pas du tout le
+même statut.
 
-Une version précédente de ce fichier disait l'inverse. C'était une
-erreur, corrigée ici.
+### Celles publiées par la fiche NOA — a priori utilisables
 
-### Ce que ça implique
+Une bonne partie vient du profil **« NOA café »** lui-même : c'est
+l'établissement qui les a déposées sur sa fiche Google. C'est son
+matériel, et les reprendre sur son propre site ne pose pas de question
+envers un tiers.
 
-**Une photo prise par un client appartient à ce client.** Publier son
-avis sur Google lui donne une licence envers Google, pas envers un
-tiers. Les reprendre sur le site commercial de l'établissement est une
-contrefaçon, même quand elles montrent l'établissement lui-même, et
-même quand c'est l'établissement qui les reprend.
+Un seul point à vérifier avec Noémie : **si un photographe a été
+payé pour les prendre, la cession de droits doit être écrite.** Une
+facture ne suffit pas — sans clause de cession, le photographe reste
+titulaire, même payé. C'est l'oubli le plus fréquent chez les petits
+établissements.
 
-Deux droits distincts se cumulent ici :
+### Celles déposées par des clients — à remplacer
 
-- **Le droit d'auteur** du photographe — client, journaliste ou
-  professionnel. Une série au moins portait un crédit explicite,
-  « © Sabrina Sako ».
-- **Le droit à l'image** des personnes reconnaissables. Plusieurs
-  photographies montrent des clients attablés, une personne au
-  comptoir, des gens en terrasse. Leur accord est requis séparément
-  pour un usage commercial.
+Le reste vient de photos d'avis. Une photo prise par un client lui
+appartient : publier son avis donne une licence à Google, pas à
+l'établissement.
 
-Le risque porte sur **l'exploitant du site**, donc sur NOA une fois le
-site livré, pas sur le prestataire.
+**La retouche n'y change rien.** Une image modifiée reste une œuvre
+dérivée, et le droit d'auteur de l'original la suit. « Elle ne
+ressemble plus à l'originale » n'est pas un moyen de défense, et un
+passage par un outil d'IA n'ouvre aucun droit nouveau. Il faudrait que
+la transformation soit assez originale pour constituer une œuvre à
+part entière — le seuil est très haut, et un recadrage ou un
+rehaussement ne l'atteint pas.
+
+S'y ajoute le **droit à l'image** des personnes reconnaissables, qui
+vaut quelle que soit l'origine de la photo : plusieurs vues montrent
+des clients attablés, une personne au comptoir, des gens en terrasse.
+Leur accord est requis séparément pour un usage commercial.
 
 ## Ce qu'il faut faire
 
-Le système est construit pour ça, et le remplacement ne coûte rien :
+**Trier.** Noémie sait en un coup d'œil lesquelles viennent de sa
+fiche. `SEANCE-PHOTO.md` liste les trente-cinq fichiers avec leur
+sujet : il suffit de cocher.
 
-1. Photographier le lieu. C'est le sien, les sujets sont simples — la
-   salle, le comptoir, la devanture, le salon, les gâteaux, les
-   tasses. Un téléphone récent suffit largement.
+- Celles de sa fiche : elles restent, sous réserve de la cession du
+  photographe.
+- Les autres : à reprendre. Le lieu est le sien et les sujets sont
+  simples.
+
+Le remplacement, quand il faut remplacer, ne coûte rien :
+
+1. Photographier ce qui manque. Un téléphone récent suffit largement.
 2. Déposer les fichiers dans `public/photos/noa/` **sous les mêmes
    noms** (voir le LISEZ-MOI du dossier).
 3. Corriger `w` et `h` dans `lib/data.js` → `P`.
@@ -54,9 +68,9 @@ soit écrite.
 
 ## En attendant
 
-Les images en place font un site complet et démontrable. Elles servent
-à montrer la mise en page, les cadrages et les proportions — **pas à
-être publiées**.
+Les images en place font un site complet et démontrable. Celles qui
+viennent de la fiche NOA peuvent rester ; les autres servent à montrer
+la mise en page en attendant leur remplacement.
 
 ## Ce qui a été fait aux fichiers
 

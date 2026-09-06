@@ -1,29 +1,31 @@
 # Avant la mise en ligne
 
-Six points. **Deux sont bloquants** — les photographies et le domaine.
-Les autres demandent une confirmation de NOA.
+Six points. **Deux demandent une action avant de publier** — les
+photographies et le domaine. Les autres sont des confirmations.
 
-## 1. Les photographies — bloquant
+## 1. Les photographies — à trier
 
-Les images en place viennent de **Google** : fiche de l'établissement,
-photos d'avis clients, articles. Elles ne sont couvertes par aucune
-autorisation.
+Les images viennent de Google, et deux origines s'y mélangent.
 
-Une photo prise par un client lui appartient. La publier sur le site
-commercial de l'établissement est une contrefaçon, même quand elle
-montre l'établissement. S'y ajoute le droit à l'image des personnes
-reconnaissables — plusieurs vues montrent des clients attablés.
+**Une bonne partie a été déposée par la fiche « NOA café »
+elle-même.** C'est le matériel de l'établissement : les reprendre sur
+son propre site ne pose pas de question envers un tiers. Un seul point
+à vérifier — si un photographe a été payé, **la cession de droits doit
+être écrite**. Une facture ne suffit pas : sans clause de cession, le
+photographe reste titulaire, même payé.
 
-**Le risque porte sur l'exploitant du site**, donc sur NOA une fois
-livré.
+**Le reste vient de photos d'avis clients**, et celles-là sont à
+reprendre. Une photo prise par un client lui appartient ; publier son
+avis donne une licence à Google, pas à l'établissement. La retouche n'y
+change rien : une image modifiée reste une œuvre dérivée, et le droit
+d'auteur de l'original la suit.
 
-Elles font un site complet et démontrable, et servent parfaitement à
-montrer la mise en page. Elles ne doivent pas partir en ligne.
+S'y ajoute le **droit à l'image** des personnes reconnaissables, quelle
+que soit l'origine — plusieurs vues montrent des clients attablés.
 
-Le remplacement est immédiat : mêmes noms de fichiers dans
-`public/photos/noa/`, deux valeurs à corriger dans `lib/data.js`, rien
-d'autre. Les sujets sont simples et le lieu lui appartient. Détail dans
-`PHOTO-SOURCES.md`.
+Le tri prend dix minutes : Noémie reconnaît ses propres photos, et
+`SEANCE-PHOTO.md` liste les trente-cinq fichiers avec leur sujet.
+Détail dans `PHOTO-SOURCES.md`.
 
 ## 2. Le domaine — bloquant
 
@@ -101,8 +103,8 @@ Deux limites connues, écrites dans `next.config.mjs` :
 
 ## Ce qui a été vérifié
 
-Le code, la mise en page et le contenu. **Pas les droits sur les
-images** — voir le point 1.
+Le code, la mise en page et le contenu. **Pas l'origine de chaque
+photographie** — voir le point 1.
 
 Sur les cinq pages publiques, en 390, 768, 1024 et 1440 px :
 

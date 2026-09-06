@@ -1,7 +1,12 @@
 # Séance photo — liste de prise de vue
 
-Toutes les images du site doivent être refaites : celles en place
-viennent de Google et ne sont pas utilisables en ligne. Voir
+**À lire avant de tout refaire.** Une bonne partie des images en place
+a été déposée sur Google par la fiche « NOA café » elle-même : ce sont
+celles de l'établissement, et elles peuvent rester. Seules celles qui
+viennent d'avis clients sont à reprendre.
+
+La première chose à faire est donc de **trier** : parcourir la liste
+ci-dessous et cocher celles que NOA reconnaît comme siennes. Voir
 `PHOTO-SOURCES.md`.
 
 ## Comment ça marche
