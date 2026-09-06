@@ -42,9 +42,9 @@ export default function Lieu() {
       <section className="aside" style={{ paddingTop: 0 }}>
         <Doodles behind tone="oak" />
         <p className="lede">
-          On entre pour un café.
+          Du bois clair, des lanternes,
           <br />
-          On reste pour le reste.
+          et de la place pour s’asseoir.
         </p>
       </section>
 

@@ -176,13 +176,18 @@ export default function Doodles({ behind = false, tone = 'light' }) {
     return () => ctx.revert();
   }, []);
 
+  /* En fond de section, la moitié des motifs suffit : derrière du
+     texte, quatorze dessins font un motif de papier peint. La
+     sélection est celle qui tient déjà sur un téléphone. */
+  const pieces = behind ? PIECES.filter((p) => p.sm) : PIECES;
+
   return (
     <div
       className={`dd${behind ? ' dd-quiet' : ''}${tone === 'oak' ? ' dd-oak' : ''}`}
       ref={root}
       aria-hidden="true"
     >
-      {PIECES.map((p, i) => (
+      {pieces.map((p, i) => (
         <svg
           key={i}
           className={`dd-i dd-line${p.sm ? ' dd-sm' : ''}`}
