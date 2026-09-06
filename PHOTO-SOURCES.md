@@ -1,78 +1,90 @@
-# Photographies — provenance
+# Photographies — provenance et droits
 
 **Ce fichier n'est pas publié.** Il vit à la racine du dépôt, pas dans
 `public/`, et n'apparaît nulle part sur le site.
 
-## Statut : fournies par NOA
+## Statut : à régler avant toute mise en ligne
 
-Toutes les photographies de `public/photos/noa/` viennent de NOA,
-remises directement pour ce site. Aucune image tierce n'est utilisée.
-Le blocage de licence qui pesait sur les premières versions est levé :
-les photographies de presse et de fiches d'annuaire qui servaient de
-repères au départ ont toutes été remplacées.
+Les photographies de `public/photos/noa/` ont été **trouvées sur
+Google** — fiche de l'établissement, photos d'avis clients, articles.
+Elles n'ont pas été fournies par NOA et ne sont couvertes par aucune
+autorisation.
 
-## Ce qui leur a été fait
+Une version précédente de ce fichier disait l'inverse. C'était une
+erreur, corrigée ici.
 
-Rien qui change l'image : conversion en JPEG progressif qualité 88–90,
-et redimensionnement.
+### Ce que ça implique
 
-**Aucune photographie n'est agrandie au-delà de sa taille d'origine**
-pour remplir un emplacement — c'est l'emplacement qui s'adapte. Deux
-exceptions assumées, où le fichier livré était plus petit que la place
-qu'il occupe à l'écran :
+**Une photo prise par un client appartient à ce client.** Publier son
+avis sur Google lui donne une licence envers Google, pas envers un
+tiers. Les reprendre sur le site commercial de l'établissement est une
+contrefaçon, même quand elles montrent l'établissement lui-même, et
+même quand c'est l'établissement qui les reprend.
 
-| Fichier | Livré | Posé | Traitement |
-|---|---|---|---|
-| les sept `*-wide` du premier lot | 1 672 px | 2 400 px | Lanczos + masque flou léger |
-| `noemie` | 474 px | 1 000 px | idem |
-| `salon-*`, `vitrine-logo`, `salle-tables` | 977 px | 1 400 px | idem |
-| `lounge` | 1 024 px | 1 600 px | idem |
+Deux droits distincts se cumulent ici :
 
-Le ré-échantillonnage n'invente aucun détail : il fait l'agrandissement
-proprement une bonne fois, avec un bon filtre, au lieu de le laisser
-bâcler par le navigateur à chaque affichage. **Un fichier d'origine plus
-défini restera toujours meilleur** — si NOA les retrouve, il suffit de
-les déposer sous le même nom.
+- **Le droit d'auteur** du photographe — client, journaliste ou
+  professionnel. Une série au moins portait un crédit explicite,
+  « © Sabrina Sako ».
+- **Le droit à l'image** des personnes reconnaissables. Plusieurs
+  photographies montrent des clients attablés, une personne au
+  comptoir, des gens en terrasse. Leur accord est requis séparément
+  pour un usage commercial.
 
-## Recadrages
+Le risque porte sur **l'exploitant du site**, donc sur NOA une fois le
+site livré, pas sur le prestataire.
 
-Deux fichiers ont été découpés :
+## Ce qu'il faut faire
 
-- la photographie qui montrait le brownie matcha et le cookie côte à
-  côte a donné deux carrés, un par produit ;
-- `noemie` et quelques vues du salon ont été recadrées au format de
-  leur emplacement.
+Le système est construit pour ça, et le remplacement ne coûte rien :
 
-## À confirmer par NOA avant la mise en ligne
+1. Photographier le lieu. C'est le sien, les sujets sont simples — la
+   salle, le comptoir, la devanture, le salon, les gâteaux, les
+   tasses. Un téléphone récent suffit largement.
+2. Déposer les fichiers dans `public/photos/noa/` **sous les mêmes
+   noms** (voir le LISEZ-MOI du dossier).
+3. Corriger `w` et `h` dans `lib/data.js` → `P`.
 
-Rien de tout cela n'est inventé, mais rien n'a été confirmé par NOA :
+Rien d'autre à toucher : chaque photographie n'est déclarée qu'une
+fois. Le site ne change pas de forme, seules les images changent.
 
-- **Les prix**, relevés sur la carte imprimée. Ils changent.
-- **Les horaires** : lundi–vendredi 8h30–17h, samedi–dimanche 10h–18h.
-  Les sources publiques ne concordaient pas toutes.
-- **La note et le nombre d'avis** — 4,9 et 500+ — qui bougent.
-- **Les avis cités**, repris mot pour mot de Google et TikTok.
-- **Les mentions légales** : SIREN, SIRET, code APE et date viennent
-  du registre public ; le capital et le nom de la gérante ont été
-  communiqués.
+Une séance avec un photographe reste le meilleur choix si le budget
+existe, et règle les deux droits d'un coup à condition que la cession
+soit écrite.
 
-## En attente
+## En attendant
 
-`photos-en-attente/` contient quatre fichiers non publiés : ils
-montrent une boisson ou une assiette, et la page Le lieu ne doit en
-montrer aucune. Le détail est dans le LISEZ-MOI du dossier.
+Les images en place font un site complet et démontrable. Elles servent
+à montrer la mise en page, les cadrages et les proportions — **pas à
+être publiées**.
+
+## Ce qui a été fait aux fichiers
+
+Conversion en JPEG progressif qualité 88–90, et redimensionnement.
+Aucune n'est agrandie au-delà de sa taille d'origine pour remplir un
+emplacement, sauf celles-ci, livrées plus petites que la place
+qu'elles occupent :
+
+| Fichier | Livré | Posé |
+|---|---|---|
+| les sept `*-wide` | 1 672 px | 2 400 px |
+| `noemie` | 474 px | 1 000 px |
+| `salon-*`, `vitrine-logo`, `salle-tables` | 977 px | 1 400 px |
+| `lounge` | 1 024 px | 1 600 px |
+
+Ré-échantillonnage Lanczos et masque flou léger : cela n'invente aucun
+détail, cela évite seulement que le navigateur étire l'image avec un
+filtre bon marché.
 
 ## Marque
 
 La marque principale est le **logotype `NOA` de l'auvent**, vectorisé
-dans `lib/logo.js`. Comparé au lettrage de la devanture, il concorde :
-mêmes fûts arrondis, même contrepoinçon oblique dans le O, même A à
-sommet plat.
+dans `lib/logo.js`, relevé sur le lettrage de la devanture.
 
-`public/brand/noa-mark.png` et `noa-lockup.png` sont **l'autre marque
-NOA**, le dessin des deux tasses de la vitrine, isolé par seuillage sur
-la luminance depuis une photographie de la vitrine. Le tracé n'a pas
-été redessiné.
+`public/brand/noa-mark.png` et `noa-lockup.png` sont le dessin des deux
+tasses de la vitrine, isolé par seuillage depuis une photographie.
 
-Si NOA fournit un SVG officiel, remplacez les fichiers et
-`components/Logo.jsx` continue de fonctionner tel quel.
+**Ces deux marques appartiennent à NOA** : les reprendre pour son
+propre site ne pose pas de question de droit d'auteur envers un tiers.
+Si NOA dispose des fichiers d'origine, un SVG officiel remplacerait
+avantageusement le tracé relevé.

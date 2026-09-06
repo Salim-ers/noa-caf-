@@ -1,9 +1,31 @@
 # Avant la mise en ligne
 
-Cinq points. Le premier est bloquant, les autres demandent une
-confirmation de NOA.
+Six points. **Deux sont bloquants** — les photographies et le domaine.
+Les autres demandent une confirmation de NOA.
 
-## 1. Le domaine — bloquant
+## 1. Les photographies — bloquant
+
+Les images en place viennent de **Google** : fiche de l'établissement,
+photos d'avis clients, articles. Elles ne sont couvertes par aucune
+autorisation.
+
+Une photo prise par un client lui appartient. La publier sur le site
+commercial de l'établissement est une contrefaçon, même quand elle
+montre l'établissement. S'y ajoute le droit à l'image des personnes
+reconnaissables — plusieurs vues montrent des clients attablés.
+
+**Le risque porte sur l'exploitant du site**, donc sur NOA une fois
+livré.
+
+Elles font un site complet et démontrable, et servent parfaitement à
+montrer la mise en page. Elles ne doivent pas partir en ligne.
+
+Le remplacement est immédiat : mêmes noms de fichiers dans
+`public/photos/noa/`, deux valeurs à corriger dans `lib/data.js`, rien
+d'autre. Les sujets sont simples et le lieu lui appartient. Détail dans
+`PHOTO-SOURCES.md`.
+
+## 2. Le domaine — bloquant
 
 Une seule variable à poser :
 
@@ -24,7 +46,7 @@ Sans elle, le site fonctionne mais quatre choses pointent vers
 Un mauvais domaine ici casse le référencement en silence : les pages
 seraient indexées sous une adresse qui ne répond pas.
 
-## 2. À faire confirmer par NOA
+## 3. À faire confirmer par NOA
 
 Tout est sourcé, rien n'est inventé, mais rien n'est confirmé.
 
@@ -40,18 +62,13 @@ Tout est sourcé, rien n'est inventé, mais rien n'est confirmé.
 Les prix et la note bougent. Un coup d'œil de Noémie sur la page
 **La carte** et sur les **mentions légales** suffit.
 
-## 3. Les photographies
+## 4. Le dossier en attente
 
-Elles viennent toutes de NOA. Voir `PHOTO-SOURCES.md`.
+`photos-en-attente/` contient quatre fichiers non publiés : ils
+montrent une boisson ou une assiette, et **Le lieu** ne doit en montrer
+aucune. Ils relèvent du même point 1.
 
-Quatre fichiers attendent dans `photos-en-attente/` : ils montrent une
-boisson ou une assiette, et **Le lieu** ne doit en montrer aucune.
-Dites où les placer et elles partent en ligne.
-
-Si NOA retrouve les fichiers d'origine des photos livrées en petit
-format, ils remplaceront les versions ré-échantillonnées.
-
-## 4. Le plan et les cookies
+## 5. Le plan et les cookies
 
 Le plan vient de Google Maps, qui dépose des traceurs. **Aucune
 requête n'est envoyée à Google tant que le visiteur n'a pas
@@ -62,7 +79,7 @@ Si NOA préfère ne pas poser la question du tout, on peut revenir à
 OpenStreetMap, qui ne dépose rien : le bandeau disparaît alors
 complètement.
 
-## 5. Sécurité
+## 6. Sécurité
 
 En place : `nosniff`, `SAMEORIGIN`, `Referrer-Policy`,
 `Permissions-Policy`, `HSTS`, et une `Content-Security-Policy`.
@@ -83,6 +100,9 @@ Deux limites connues, écrites dans `next.config.mjs` :
   statiques.
 
 ## Ce qui a été vérifié
+
+Le code, la mise en page et le contenu. **Pas les droits sur les
+images** — voir le point 1.
 
 Sur les cinq pages publiques, en 390, 768, 1024 et 1440 px :
 
