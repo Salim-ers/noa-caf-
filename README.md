@@ -1,90 +1,133 @@
-# NOA — Café & Friends
+﻿# NOA — Café & Friends
 
-Site du coffee shop NOA, 6 rue Mélingue, 75019 Paris.
-Next.js 14 (App Router), cinq routes, toutes statiques.
+Site vitrine du coffee shop NOA, 6 rue Mélingue, 75019 Paris.
+Next.js 15 (App Router), React 19, JavaScript et CSS, GSAP pour les animations.
+Huit pages prérendues : accueil, carte, lieu, histoire, venir, mentions
+légales, confidentialité et cookies. Aucun compte, formulaire, paiement
+ou back-office ; les contenus sont modifiés dans le code.
+
+## Développement
+
+Utiliser Node.js 22 LTS ou 24 LTS et npm.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-## Avant la mise en ligne
-
-1. **Domaine.** `NEXT_PUBLIC_SITE_ORIGIN` (ou `lib/data.js` → `SITE.origin`).
-   Il alimente le canonical, l'OpenGraph, le sitemap et le JSON-LD.
-2. **Photographies.** Les fichiers de `public/photos/noa/` sont des
-   références de travail, pas des fichiers acquis. Lisez
-   [`PHOTO-SOURCES.md`](./PHOTO-SOURCES.md) — c'est le point bloquant.
-3. **Prix.** `lib/data.js` → `MENU`. Tous à `null`, donc aucun prix ne
-   s'affiche. Mettez un nombre, il apparaît.
-4. **Horaires.** `lib/data.js` → `HOURS`, à répercuter dans
-   `app/layout.jsx` → `openingHoursSpecification`. Les sources
-   publiques ne concordent pas toutes ; à trancher par NOA.
-
-## Structure
-
+```bash
+npm run build
+npm start
+npm audit
 ```
+
+Sous PowerShell, utiliser `npm.cmd` si la politique d'exécution bloque
+`npm.ps1`. Le build télécharge Outfit via `next/font/google` : un accès
+réseau est nécessaire, puis la police est servie par le site.
+Le script historique `npm run lint` nécessite une configuration ESLint
+qui n'est pas encore présente ; il ne constitue pas un contrôle opérationnel.
+
+## Démo et mise en ligne
+
+La variable `NEXT_PUBLIC_SITE_ORIGIN` doit rester absente pour une démo
+non indexable : les pages principales portent `noindex, nofollow` et `robots.txt`
+interdit l'exploration. Le domaine de repli du code n'est pas une adresse
+de production validée. Ne pas remplacer simplement `SITE.origin` :
+l'activation de l'indexation dépend de la variable.
+
+Pour la production, définir l'origine HTTPS définitive, sans slash final :
+
+```dotenv
+NEXT_PUBLIC_SITE_ORIGIN=https://votre-domaine.fr
+```
+
+Reconstruire et redéployer après ce changement. La variable alimente les
+URL canonical, OpenGraph, sitemap et JSON-LD, et active l'indexation.
+Le sitemap contient les cinq pages principales. Les trois pages légales
+conservent `noindex, follow`, y compris en production.
+
+Avant publication, faire valider par NOA les prix, horaires, avis et
+informations légales, ainsi que l'hébergeur renseigné (Vercel par défaut).
+Trier les photographies et vérifier les autorisations d'utilisation.
+Les notes de livraison et de provenance sont conservées localement dans
+`_interne/`, ignoré par Git et absent d'un nouveau clone.
+
+## Structure et contenus
+
+```text
 app/
-  layout.jsx        métadonnées, JSON-LD rendu serveur, la police
-  page.jsx          accueil
+  layout.jsx             police, structure commune, métadonnées, JSON-LD
+  page.jsx               accueil
   carte/ lieu/ histoire/ venir/
-  opengraph-image.jpg
-  sitemap.js robots.js globals.css
+  mentions-legales/ confidentialite/ cookies/
+  globals.css            styles et adaptations responsive
+  opengraph-image.jpg    image de partage
+  sitemap.js robots.js   référencement
 components/
-  Hero Favoris Gallery Reviews Social Visit   les sections
-  Photo.jsx         une photo NOA, sans cadre ni légende
-  Logo.jsx          le vrai logo, en mask-image, prend currentColor
-  Fit.jsx           titres à la largeur exacte de leur colonne
-  Reveal.jsx        les quatre mouvements GSAP, et rien d'autre
-lib/data.js         toutes les données éditables
+  Header Footer Dock Loader
+  Hero Favoris Reviews Social VenirPage
+  Hours useNow           horaires et état ouvert/fermé à l'heure de Paris
+  MapFrame Consent useConsent
+  Photo Logo Glyph Fit Reveal Marquee Doodles
+lib/
+  data.js                contenus, photos, carte, horaires, avis, société
+  consent.js             choix du visiteur et synchronisation
+  nav.js                 liens de navigation
+  logo.js glyph.js       tracés de la marque
+public/
+  photos/noa/            photographies
+  brand/                 marques graphiques
 ```
 
-## Le système
+Dans `lib/data.js` :
 
-**Couleur.** `#024038` est échantillonné sur le store vert de la
-devanture — médiane de 11 337 pixels de toile en lumière plate. Le crème,
-le noyer et l'encre viennent des murs, des tables et du tableau noir.
-Cinq valeurs, pas une de plus.
+- `MENU` contient les six catégories et les 30 articles avec leurs prix.
+- `HOURS` contient les horaires ; répercuter toute modification dans
+  `app/layout.jsx`, sous `openingHoursSpecification`.
+- `P` centralise les fichiers photo, dimensions et textes alternatifs.
+  Pour remplacer une photo, conserver son nom et actualiser `w`, `h` et `alt`.
+- `SITE`, `REVIEWS` et `LEGAL_INFO` regroupent les coordonnées, réseaux,
+  avis et informations de l'établissement. La note et les avis sont figés,
+  sans synchronisation avec Google ou TikTok.
 
-**Typographie.** Une seule famille, Outfit, en cinq graisses. Géométrique,
-bols quasi circulaires, noire très lourde — la même famille de formes que
-le lettrage du store et de la vitrine. Aucun second caractère.
+## Identité et interactions
 
-**Logo.** Deux marques, toutes deux relevées sur le lieu. Le logotype
-`NOA` de l'auvent, vectorisé dans `lib/logo.js`, est la marque
-principale : en-tête, hero, pied de page, bande défilante. Le dessin
-des deux tasses de la vitrine vit dans `public/brand/`, isolé depuis
-une photographie et posé en `mask-image`. Les deux héritent de
-`currentColor`, donc un seul fichier fait le blanc sur vert comme le
-vert sur crème.
+Le vert principal est `#024038`, accompagné de crème, blanc cassé,
+encre et noyer. La carte ajoute de l'orange et du bleu. Outfit est la
+seule famille typographique, en cinq graisses.
 
-**Mouvement.** GSAP + ScrollTrigger. Le logotype monte de derrière son
-propre bord, la signature suit lettre à lettre, et le bandeau `NOA`
-glisse — mais lié au scroll, jamais en boucle autonome. Ensuite quatre
-gestes seulement : révélation
-par clip, léger recadrage d'échelle, ligne masquée, parallaxe lente.
-L'état de repos est l'état vrai : les positions de départ sont en CSS
-derrière `html.js`, donc sans JavaScript rien n'est jamais caché, et
-`prefers-reduced-motion` va droit au repos.
+Le logotype NOA est un SVG issu de `lib/logo.js`. Les deux tasses sont
+des images utilisées en masque CSS ; les marques héritent de `currentColor`.
+`Glyph` reprend le O du logotype dans les titres.
 
-**Le O.** `lib/glyph.js` isole le O du logotype — son contrepoinçon
-oblique — et `components/Glyph.jsx` le réinjecte dans les titres à la
-place du O de la fonte. C'est ce qui fait qu'un titre appartient à NOA
-et pas à Outfit. Le même fichier fournit le grain de café, dessiné dans
-la même main que les tasses de la vitrine.
+GSAP et ScrollTrigger animent les révélations et le bandeau au défilement.
+Les styles prennent en compte `prefers-reduced-motion` et prévoient un
+affichage du contenu sans JavaScript.
 
-**La carte du pied de page.** Un cadre OpenStreetMap, déplaçable, sans
-clé d'API ni script de suivi, teinté vers le vert de marque en CSS.
-L'attribution OSM reste visible : elle est exigée par la licence.
+Google Maps est intégré dans `MapFrame`, après acceptation du visiteur.
+Avant cela, le composant présente l'adresse et les actions d'affichage
+du plan ou d'itinéraire. Le choix est conservé dans `localStorage`
+(`noa-cookies`). Pour réinitialiser le choix, effacer les données du site
+dans le navigateur, comme indiqué sur la page Cookies.
+Les réseaux sociaux sont de simples liens, sans flux intégré.
 
-**Photographies.** Chaque image n'est déclarée qu'une fois, dans
-`lib/data.js` → `P`, avec ses vraies dimensions. Remplacez un fichier sous
-le même nom, corrigez `w`/`h`, et tout le site suit.
+## Dépendances et sécurité
 
-## Notes
+Contrôle effectué le 7 septembre 2026 : Next.js **15.5.25**, React et
+React DOM **19.2.8**. PostCSS est fixé à **8.5.28** par un `override`
+limité à Next.js, pour corriger sa dépendance transitive. À réévaluer
+lors de la prochaine mise à jour de Next.js.
 
-- `aggregateRating` est volontairement absent du JSON-LD : la note vient
-  de Google, et Google demande de ne pas la baliser comme donnée propre.
-- `sharp` est installé : sans lui, l'optimisation d'images de Next est
-  très lente en production.
-- `next@14.2.5` porte un avis de sécurité. À monter en version.
+`npm audit` ne remonte aucune vulnérabilité après cette mise à jour.
+Ce résultat décrit les avis connus au moment du contrôle, pas une
+garantie générale de sécurité. Le fichier `package-lock.json` doit être
+versionné ; `npm ci` permet de reproduire l'installation.
+
+Référence : [correctifs Next.js d'août 2026](https://nextjs.org/blog/august-2026-security-release).
+La branche 15.5 dispose de correctifs : migrer vers Next.js 16 n'est
+pas nécessaire pour appliquer ceux-ci.
+
+`next.config.mjs` configure les en-têtes de sécurité, dont une CSP qui
+autorise les scripts inline nécessaires au rendu actuel, et limite les
+iframes à Google Maps. `sharp` assure l'optimisation des images.
+Le JSON-LD est rendu côté serveur et n'inclut pas `aggregateRating`.
